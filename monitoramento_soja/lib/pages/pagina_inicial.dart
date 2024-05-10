@@ -106,8 +106,7 @@ class PaginaInicial extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         side: BorderSide(
-                          color: Color.fromARGB(
-                              241, 92, 198, 147), 
+                          color: Color.fromARGB(241, 92, 198, 147),
                         ),
                       ),
                       child: SizedBox(
@@ -117,8 +116,7 @@ class PaginaInicial extends StatelessWidget {
                           child: Text(
                             'Login',
                             style: TextStyle(
-                              color: Color.fromARGB(
-                                  241, 92, 198, 147), // Cor do texto do botão
+                              color: Color.fromARGB(241, 92, 198, 147),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
