@@ -2,7 +2,6 @@ class DoencaEntity {
   final int id;
   final int idSoja;
   final String tipoDoenca;
-  final String tamanho;
   final int pontoAmostragem1;
   final int pontoAmostragem2;
   final int pontoAmostragem3;
@@ -20,7 +19,6 @@ class DoencaEntity {
       {required this.id,
       required this.idSoja,
       required this.tipoDoenca,
-      required this.tamanho,
       required this.pontoAmostragem1,
       required this.pontoAmostragem2,
       required this.pontoAmostragem3,

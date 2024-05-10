@@ -1,7 +1,7 @@
 class SojaEntity {
   final int id;
-  final DateTime data;
-  final DateTime dataSemeadura;
+  final String data;
+  final String dataSemeadura;
   final String monitor;
   final String loteTalhao;
   final String tipoSoja;

@@ -2,7 +2,6 @@ class PredadorEntity {
   final int id;
   final int idSoja;
   final String tipoPredador;
-  final String tamanho;
   final int pontoAmostragem1;
   final int pontoAmostragem2;
   final int pontoAmostragem3;
@@ -20,7 +19,6 @@ class PredadorEntity {
       {required this.id,
       required this.idSoja,
       required this.tipoPredador,
-      required this.tamanho,
       required this.pontoAmostragem1,
       required this.pontoAmostragem2,
       required this.pontoAmostragem3,
