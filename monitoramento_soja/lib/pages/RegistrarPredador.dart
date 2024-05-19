@@ -4,7 +4,7 @@ class registrarPredador extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Ana Carla, Colocar AppBar!
+      // Ana Carla, Colocar o AppBar!
 
       resizeToAvoidBottomInset: false,
       body: Center(

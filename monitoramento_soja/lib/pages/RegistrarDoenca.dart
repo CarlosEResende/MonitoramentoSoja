@@ -4,7 +4,7 @@ class registrarDoenca extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Ana Carla, Colocar AppBar para ficar Padronizado!
+      // Ana Carla, Colocar o AppBar!
 
       resizeToAvoidBottomInset: false,
       body: Center(
