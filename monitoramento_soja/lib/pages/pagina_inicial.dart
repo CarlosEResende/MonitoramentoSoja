@@ -50,7 +50,7 @@ class PaginaInicial extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 25),
+                  SizedBox(height: 24),
                   Text(
                     'Proteja suas plantações  contra as pragas da soja\n Junte-se a nós para impulsionar \nsua produtividade agrícola!',
                     textAlign: TextAlign.center,
