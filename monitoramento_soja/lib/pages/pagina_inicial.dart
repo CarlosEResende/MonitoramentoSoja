@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/pages/PaginaCadastro.dart';
 import 'package:monitoramento_soja/pages/PaginaLogin.dart';
+import 'package:monitoramento_soja/pages/RegistrarPraga.dart';
+import 'package:monitoramento_soja/pages/RegistrarDoenca.dart';
+import 'package:monitoramento_soja/pages/RegistrarPredador.dart';
 
 class PaginaInicial extends StatelessWidget {
   const PaginaInicial({Key? key}) : super(key: key);
