@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(cadastrosSoja());
-}
-
 class cadastrosSoja extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

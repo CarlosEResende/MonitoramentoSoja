@@ -5,7 +5,23 @@ class registrarDoenca extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // Ana Carla, Colocar o AppBar!
-
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Image.asset(
+              'lib/img/mao.png',
+              width: 40,
+              height: 40,
+            ),
+            SizedBox(width: 15),
+            Text(
+              'SojaSafe',
+              style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        backgroundColor: Colors.green,
+      ),
       resizeToAvoidBottomInset: false,
       body: Center(
         child: Padding(
