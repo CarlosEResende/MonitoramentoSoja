@@ -38,8 +38,8 @@ class PragaDTO {
       this.media,
       this.nivelControle = ''});
 
-  PredadorEntity toEntity() {
-    return PredadorEntity(
+  PragaEntity toEntity() {
+    return PragaEntity(
       id: id ?? 0,
       idSoja: idSoja ?? 0,
       tipoPraga: tipoPraga,
@@ -63,44 +63,44 @@ class PragaDTO {
   factory PragaDTO.fromJson(Map<String, dynamic> json) {
     return PragaDTO(
       id: json['id'],
-      idSoja: json['idSoja'],
-      tipoPraga: json['tipoPraga'] ?? '',
-      tamanho: json['tamanho'] ?? '',
-      pontoAmostragem1: json['pontoAmostragem1'],
-      pontoAmostragem2: json['pontoAmostragem2'],
-      pontoAmostragem3: json['pontoAmostragem3'],
-      pontoAmostragem4: json['pontoAmostragem4'],
-      pontoAmostragem5: json['pontoAmostragem5'],
-      pontoAmostragem6: json['pontoAmostragem6'],
-      pontoAmostragem7: json['pontoAmostragem7'],
-      pontoAmostragem8: json['pontoAmostragem8'],
-      pontoAmostragem9: json['pontoAmostragem9'],
-      pontoAmostragem10: json['pontoAmostragem10'],
+      idSoja: json['id_soja'],
+      tipoPraga: json['tipo_praga'],
+      tamanho: json['tamanho'],
+      pontoAmostragem1: json['ponto_amostragem_1'],
+      pontoAmostragem2: json['ponto_amostragem_2'],
+      pontoAmostragem3: json['ponto_amostragem_3'],
+      pontoAmostragem4: json['ponto_amostragem_4'],
+      pontoAmostragem5: json['ponto_amostragem_5'],
+      pontoAmostragem6: json['ponto_amostragem_6'],
+      pontoAmostragem7: json['ponto_amostragem_7'],
+      pontoAmostragem8: json['ponto_amostragem_8'],
+      pontoAmostragem9: json['ponto_amostragem_9'],
+      pontoAmostragem10: json['ponto_amostragem_10'],
       total: json['total'],
       media: json['media'],
-      nivelControle: json['nivelControle'] ?? '',
+      nivelControle: json['nivel_controle'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'idSoja': idSoja,
-      'tipoPraga': tipoPraga,
+      'id_soja': idSoja,
+      'tipo_praga': tipoPraga,
       'tamanho': tamanho,
-      'pontoAmostragem1': pontoAmostragem1,
-      'pontoAmostragem2': pontoAmostragem2,
-      'pontoAmostragem3': pontoAmostragem3,
-      'pontoAmostragem4': pontoAmostragem4,
-      'pontoAmostragem5': pontoAmostragem5,
-      'pontoAmostragem6': pontoAmostragem6,
-      'pontoAmostragem7': pontoAmostragem7,
-      'pontoAmostragem8': pontoAmostragem8,
-      'pontoAmostragem9': pontoAmostragem9,
-      'pontoAmostragem10': pontoAmostragem10,
+      'ponto_amostragem_1': pontoAmostragem1,
+      'ponto_amostragem_2': pontoAmostragem2,
+      'ponto_amostragem_3': pontoAmostragem3,
+      'ponto_amostragem_4': pontoAmostragem4,
+      'ponto_amostragem_5': pontoAmostragem5,
+      'ponto_amostragem_6': pontoAmostragem6,
+      'ponto_amostragem_7': pontoAmostragem7,
+      'ponto_amostragem_8': pontoAmostragem8,
+      'ponto_amostragem_9': pontoAmostragem9,
+      'ponto_amostragem_10': pontoAmostragem10,
       'total': total,
       'media': media,
-      'nivelControle': nivelControle,
+      'nivel_controle': nivelControle,
     };
   }
 }

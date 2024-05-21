@@ -1,4 +1,4 @@
-class PredadorEntity {
+class PragaEntity {
   final int id;
   final int idSoja;
   final String tipoPraga;
@@ -17,7 +17,7 @@ class PredadorEntity {
   final double media;
   final String nivelControle;
 
-  PredadorEntity(
+  PragaEntity(
       {required this.id,
       required this.idSoja,
       required this.tipoPraga,

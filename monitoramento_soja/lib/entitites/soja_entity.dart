@@ -1,5 +1,6 @@
 class SojaEntity {
   final int id;
+  final int idUsuario;
   final String data;
   final String dataSemeadura;
   final String monitor;
@@ -10,6 +11,7 @@ class SojaEntity {
 
   SojaEntity(
       {required this.id,
+      required this.idUsuario,
       required this.data,
       required this.dataSemeadura,
       required this.monitor,
