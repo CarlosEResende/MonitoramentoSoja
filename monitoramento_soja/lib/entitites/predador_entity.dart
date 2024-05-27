@@ -1,4 +1,4 @@
-class DoencaEntity {
+class PredadorEntity {
   final int id;
   final int idSoja;
   final String tipoPredador;
@@ -15,7 +15,7 @@ class DoencaEntity {
   final int total;
   final double media;
 
-  DoencaEntity(
+  PredadorEntity(
       {required this.id,
       required this.idSoja,
       required this.tipoPredador,

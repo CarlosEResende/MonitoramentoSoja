@@ -63,6 +63,36 @@ class PragaDAO {
     }
   }
 
+  Future<List<PragaDTO>> selectByIdSoja(String idSoja) async {
+    final db = await _db;
+    List<Map<String, dynamic>> maps = await db.query(
+      'praga',
+      where: 'id_soja = ?',
+      whereArgs: [idSoja],
+    );
+    return List.generate(maps.length, (i) {
+      return PragaDTO(
+        id: maps[i]['id'],
+        idSoja: maps[i]['idSoja'],
+        tipoPraga: maps[i]['tipoPraga'],
+        tamanho: maps[i]['tamanho'],
+        pontoAmostragem1: maps[i]['pontoAmostragem1'],
+        pontoAmostragem2: maps[i]['pontoAmostragem2'],
+        pontoAmostragem3: maps[i]['pontoAmostragem3'],
+        pontoAmostragem4: maps[i]['pontoAmostragem4'],
+        pontoAmostragem5: maps[i]['pontoAmostragem5'],
+        pontoAmostragem6: maps[i]['pontoAmostragem6'],
+        pontoAmostragem7: maps[i]['pontoAmostragem7'],
+        pontoAmostragem8: maps[i]['pontoAmostragem8'],
+        pontoAmostragem9: maps[i]['pontoAmostragem9'],
+        pontoAmostragem10: maps[i]['pontoAmostragem10'],
+        total: maps[i]['total'],
+        media: maps[i]['media'],
+        nivelControle: maps[i]['nivelControle'],
+      );
+    });
+  }
+
   Future<List<PragaDTO>> selectAll() async {
     final db = await _db;
     final List<Map<String, dynamic>> maps = await db.query('praga');

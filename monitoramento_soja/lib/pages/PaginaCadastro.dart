@@ -1,15 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:monitoramento_soja/dtos/usuario_dto.dart';
 import 'package:monitoramento_soja/pages/pagina_inicial.dart';
+import 'package:monitoramento_soja/repository/usuario_dao.dart';
 
-class Cadastro extends StatelessWidget {
-  const Cadastro({Key? key}) : super(key: key);
+class CadastrarUser extends StatefulWidget {
+  const CadastrarUser({super.key});
+
+  @override
+  State<CadastrarUser> createState() => _CadastrarUserState();
+}
+
+class _CadastrarUserState extends State<CadastrarUser> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  late UsuarioDTO usuarioDTO;
+
+  final myControllerNr1 = TextEditingController();
+  final myControllerNr2 = TextEditingController();
+  final myControllerNr3 = TextEditingController();
+  final myControllerNr4 = TextEditingController();
+
+  @override
+  void dispose() {
+    myControllerNr1.dispose();
+    myControllerNr2.dispose();
+    myControllerNr3.dispose();
+    myControllerNr4.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    usuarioDTO = UsuarioDTO();
+
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
+        key: _formKey,
+        child: SizedBox(
+          height: 950,
           child: Stack(
             children: [
               Container(
@@ -58,8 +91,8 @@ class Cadastro extends StatelessWidget {
                                 width: 40,
                               ),
                             ),
-                            SizedBox(width: 90),
-                            Text(
+                            const SizedBox(width: 90),
+                            const Text(
                               "Cadastro",
                               style: TextStyle(
                                 color: Color(0xFF19480D),
@@ -69,10 +102,10 @@ class Cadastro extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 60),
+                        const SizedBox(height: 60),
                         TextFormField(
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
+                          onChanged: (value) => usuarioDTO.nome = value,
+                          decoration: const InputDecoration(
                             labelText: "Nome",
                             labelStyle: TextStyle(
                               color: Color(0xFF19480D),
@@ -86,19 +119,19 @@ class Cadastro extends StatelessWidget {
                               borderSide: BorderSide.none,
                             ),
                             prefixIcon: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 10),
+                              padding: EdgeInsets.only(left: 20, right: 10),
                               child: Icon(
                                 Icons.person,
                                 color: Color(0xFF8AD777),
                               ),
                             ),
                           ),
+                          controller: myControllerNr1,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
+                          onChanged: (value) => usuarioDTO.email = value,
+                          decoration: const InputDecoration(
                             labelText: "Email",
                             labelStyle: TextStyle(
                               color: Color(0xFF19480D),
@@ -112,20 +145,20 @@ class Cadastro extends StatelessWidget {
                               borderSide: BorderSide.none,
                             ),
                             prefixIcon: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 10),
+                              padding: EdgeInsets.only(left: 20, right: 10),
                               child: Icon(
                                 Icons.email,
                                 color: Color(0xFF8AD777),
                               ),
                             ),
                           ),
+                          controller: myControllerNr2,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
-                          keyboardType: TextInputType.visiblePassword,
+                          onChanged: (value) => usuarioDTO.senha = value,
                           obscureText: true,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: "Senha",
                             labelStyle: TextStyle(
                               color: Color(0xFF19480D),
@@ -139,20 +172,20 @@ class Cadastro extends StatelessWidget {
                               borderSide: BorderSide.none,
                             ),
                             prefixIcon: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 10),
+                              padding: EdgeInsets.only(left: 20, right: 10),
                               child: Icon(
                                 Icons.lock,
                                 color: Color(0xFF8AD777),
                               ),
                             ),
                           ),
+                          controller: myControllerNr3,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
-                          keyboardType: TextInputType.visiblePassword,
+                          onChanged: (value) => usuarioDTO.confirmar = value,
                           obscureText: true,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: "Confirmar Senha",
                             labelStyle: TextStyle(
                               color: Color(0xFF19480D),
@@ -166,30 +199,37 @@ class Cadastro extends StatelessWidget {
                               borderSide: BorderSide.none,
                             ),
                             prefixIcon: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 10),
+                              padding: EdgeInsets.only(left: 20, right: 10),
                               child: Icon(
                                 Icons.lock,
                                 color: Color(0xFF8AD777),
                               ),
                             ),
                           ),
+                          controller: myControllerNr4,
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 20),
                           child: Align(
                             alignment: Alignment.center,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _inserirUsuario(usuarioDTO);
+                                _clear();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text("Salvo em SQLite!")),
+                                );
+                              },
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                backgroundColor: Color(0xFF32881C),
+                                backgroundColor: const Color(0xFF32881C),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
                                     vertical: 12, horizontal: 40),
                                 child: Text(
                                   "Cadastrar",
@@ -203,10 +243,10 @@ class Cadastro extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Container(
                           height: 2,
-                          color: Color(0xFF32881C),
+                          color: const Color(0xFF32881C),
                         ),
                       ],
                     ),
@@ -218,5 +258,27 @@ class Cadastro extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _clear() {
+    usuarioDTO = UsuarioDTO(id: usuarioDTO.id);
+    myControllerNr2.clear();
+    myControllerNr1.clear();
+    myControllerNr3.clear();
+    myControllerNr4.clear();
+  }
+
+  Future<void> _inserirUsuario(UsuarioDTO usuario) async {
+    UsuarioDAO dao = UsuarioDAO();
+    await dao.insert(usuario);
+    dao = UsuarioDAO();
+
+    // Future<UsuarioDTO?> lastUser = dao.obterUltimo();
+    // UsuarioDTO? cantor = await lastUser;
+
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   SnackBar(
+    //       backgroundColor: Colors.lightBlue, content: Text(cantor.toString())),
+    // );
   }
 }

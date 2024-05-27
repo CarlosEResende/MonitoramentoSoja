@@ -2,6 +2,7 @@ import 'package:monitoramento_soja/entitites/soja_entity.dart';
 
 class SojaDTO {
   int? id;
+  int? idUsuario;
   String data;
   String dataSemeadura;
   String monitor;
@@ -12,6 +13,7 @@ class SojaDTO {
 
   SojaDTO(
       {this.id,
+      this.idUsuario,
       this.data = '',
       this.dataSemeadura = '',
       this.monitor = '',
@@ -23,6 +25,7 @@ class SojaDTO {
   SojaEntity toEntity() {
     return SojaEntity(
         id: id ?? 0,
+        idUsuario: idUsuario ?? 0,
         data: data,
         dataSemeadura: dataSemeadura,
         monitor: monitor,
@@ -35,25 +38,27 @@ class SojaDTO {
   factory SojaDTO.fromJson(Map<String, dynamic> json) {
     return SojaDTO(
         id: json['id'],
+        idUsuario: json['id_usuario'],
         data: json['data'],
-        dataSemeadura: json['dataSemeadura'],
+        dataSemeadura: json['data_semeadura'],
         monitor: json['monitor'],
-        loteTalhao: json['loteTalhao'],
-        tipoSoja: json['tipoSoja'],
+        loteTalhao: json['lote_talhao'],
+        tipoSoja: json['tipo_soja'],
         municipio: json['municipio'],
-        estagioSoja: json['estagioSoja']);
+        estagioSoja: json['estagio_soja']);
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'id_usuario': idUsuario,
       'data': data,
-      'dataSemeadura': dataSemeadura,
+      'data_semeadura': dataSemeadura,
       'monitor': monitor,
-      'loteTalhao': loteTalhao,
-      'tipoSoja': tipoSoja,
+      'lote_talhao': loteTalhao,
+      'tipo_soja': tipoSoja,
       'municipio': municipio,
-      'estagioSoja': estagioSoja
+      'estagio_soja': estagioSoja
     };
   }
 }

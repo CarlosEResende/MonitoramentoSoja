@@ -4,13 +4,20 @@ import 'package:sqflite/sqflite.dart';
 class Conexao {
   static const _dbname = "mip.db";
   static const List<String> _sqlScript = [
+    '''CREATE TABLE usuario(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nome TEXT,
+      email TEXT,
+      senha TEXT)''',
     '''CREATE TABLE soja(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id_usuario INTEGER,
       data TEXT,
       data_semeadura TEXT,
       monitor TEXT, lote_talhao TEXT,
       tipo_soja TEXT, municipio TEXT,
-      estagio_soja TEXT)''',
+      estagio_soja TEXT,
+      FOREIGN KEY (id_usuario) REFERENCES usuario(id))''',
     '''CREATE TABLE doenca(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       id_soja INTEGER,
@@ -45,6 +52,7 @@ class Conexao {
       ponto_amostragem_10 INTEGER,
       total INTEGER,
       media DOUBLE,
+      nivel_controle TEXT,
       FOREIGN KEY (id_soja) REFERENCES soja(id))''',
     '''CREATE TABLE predador(
       id INTEGER PRIMARY KEY AUTOINCREMENT,

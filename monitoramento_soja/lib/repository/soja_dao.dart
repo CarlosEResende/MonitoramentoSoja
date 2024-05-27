@@ -41,6 +41,7 @@ class SojaDAO {
     if (maps.isNotEmpty) {
       return SojaDTO(
           id: maps[0]['id'],
+          idUsuario: maps[0]['idUsuario'],
           data: maps[0]['data'],
           dataSemeadura: maps[0]['dataSemeadura'],
           monitor: maps[0]['monitor'],
@@ -53,12 +54,17 @@ class SojaDAO {
     }
   }
 
-  Future<List<SojaDTO>> selectAll() async {
+  Future<List<SojaDTO>> selectByIdUser(String idUsuario) async {
     final db = await _db;
-    final List<Map<String, dynamic>> maps = await db.query('soja');
+    List<Map<String, dynamic>> maps = await db.query(
+      'soja',
+      where: 'id_usuario = ?',
+      whereArgs: [idUsuario],
+    );
     return List.generate(maps.length, (i) {
       return SojaDTO(
           id: maps[i]['id'],
+          idUsuario: maps[i]['idUsuario'],
           data: maps[i]['data'],
           dataSemeadura: maps[i]['dataSemeadura'],
           monitor: maps[i]['monitor'],
@@ -69,46 +75,20 @@ class SojaDAO {
     });
   }
 
-  Future<SojaDTO> obterUltimo() async {
-    try {
-      final db = await _db;
-
-      // Query the database to get the last inserted record based on the primary key
-      List<Map<String, dynamic>> maps =
-          await db.rawQuery('SELECT * FROM soja ORDER BY id DESC LIMIT 1');
-
-      if (maps.isNotEmpty) {
-        return SojaDTO(
-            id: maps[0]['id'],
-            data: maps[0]['data'],
-            dataSemeadura: maps[0]['dataSemeadura'],
-            monitor: maps[0]['monitor'],
-            loteTalhao: maps[0]['loteTalhao'],
-            tipoSoja: maps[0]['tipoSoja'],
-            municipio: maps[0]['municipio'],
-            estagioSoja: maps[0]['estagioSoja']);
-      } else {
-        return SojaDTO(
-            id: 0,
-            data: '',
-            dataSemeadura: '',
-            monitor: '',
-            loteTalhao: '',
-            tipoSoja: '',
-            municipio: '',
-            estagioSoja: '');
-      }
-    } catch (e) {
-      print('Erro: $e');
+  Future<List<SojaDTO>> selectAll() async {
+    final db = await _db;
+    final List<Map<String, dynamic>> maps = await db.query('soja');
+    return List.generate(maps.length, (i) {
       return SojaDTO(
-          id: 0,
-          data: '',
-          dataSemeadura: '',
-          monitor: '',
-          loteTalhao: '',
-          tipoSoja: '',
-          municipio: '',
-          estagioSoja: '');
-    }
+          id: maps[i]['id'],
+          idUsuario: maps[i]['idUsuario'],
+          data: maps[i]['data'],
+          dataSemeadura: maps[i]['dataSemeadura'],
+          monitor: maps[i]['monitor'],
+          loteTalhao: maps[i]['loteTalhao'],
+          tipoSoja: maps[i]['tipoSoja'],
+          municipio: maps[i]['municipio'],
+          estagioSoja: maps[i]['estagioSoja']);
+    });
   }
 }
