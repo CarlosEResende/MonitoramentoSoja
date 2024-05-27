@@ -6,12 +6,12 @@ import 'package:monitoramento_soja/pages/RegistrarDoenca.dart';
 import 'package:monitoramento_soja/pages/RegistrarPredador.dart';
 
 class PaginaInicial extends StatelessWidget {
-  const PaginaInicial({Key? key}) : super(key: key);
+  const PaginaInicial({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEEF1F7),
+      backgroundColor: const Color(0xffEEF1F7),
       body: SafeArea(
         child: Stack(
           children: [
@@ -36,13 +36,13 @@ class PaginaInicial extends StatelessWidget {
             Center(
               child: Column(
                 children: [
-                  SizedBox(height: 100),
-                  Image(
+                  const SizedBox(height: 100),
+                  const Image(
                     height: 300,
                     image: AssetImage('lib/img/logos.png'),
                   ),
-                  SizedBox(height: 5),
-                  Text(
+                  const SizedBox(height: 5),
+                  const Text(
                     'SojaSafe',
                     style: TextStyle(
                       fontSize: 30,
@@ -50,8 +50,8 @@ class PaginaInicial extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 24),
-                  Text(
+                  const SizedBox(height: 24),
+                  const Text(
                     'Proteja suas plantações  contra as pragas da soja\n Junte-se a nós para impulsionar \nsua produtividade agrícola!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -60,7 +60,7 @@ class PaginaInicial extends StatelessWidget {
                       fontSize: 15,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: ElevatedButton(
@@ -68,7 +68,7 @@ class PaginaInicial extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Cadastro(),
+                            builder: (context) => const CadastrarUser(),
                           ),
                         );
                       },
@@ -76,9 +76,10 @@ class PaginaInicial extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        backgroundColor: Color.fromARGB(241, 92, 198, 147),
+                        backgroundColor:
+                            const Color.fromARGB(241, 92, 198, 147),
                       ),
-                      child: SizedBox(
+                      child: const SizedBox(
                         width: 140,
                         height: 49,
                         child: Center(
@@ -100,7 +101,7 @@ class PaginaInicial extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Login(),
+                            builder: (context) => const Login(),
                           ),
                         );
                       },
@@ -108,11 +109,11 @@ class PaginaInicial extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: Color.fromARGB(241, 92, 198, 147),
                         ),
                       ),
-                      child: SizedBox(
+                      child: const SizedBox(
                         width: 140,
                         height: 49,
                         child: Center(

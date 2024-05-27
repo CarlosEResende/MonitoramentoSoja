@@ -5,12 +5,14 @@ class UsuarioDTO {
   String nome;
   String email;
   String senha;
+  String confirmar;
 
   UsuarioDTO({
     this.id,
     this.nome = '',
     this.email = '',
     this.senha = '',
+    this.confirmar = '',
   });
 
   UsuarioEntity toEntity() {
@@ -38,5 +40,10 @@ class UsuarioDTO {
       'email': email,
       'senha': senha,
     };
+  }
+
+  @override
+  String toString() {
+    return 'UsuarioDTO(id: $id, nome: $nome, email: $email, senha: $senha)';
   }
 }

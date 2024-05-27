@@ -3,13 +3,13 @@ import 'package:monitoramento_soja/pages/pagina_inicial.dart';
 import 'package:monitoramento_soja/pages/PaginaCadastro.dart';
 
 class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
@@ -54,7 +54,8 @@ class Login extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => PaginaInicial()),
+                                      builder: (context) =>
+                                          const PaginaInicial()),
                                 );
                               },
                               child: Image.asset(
@@ -63,8 +64,8 @@ class Login extends StatelessWidget {
                                 width: 40,
                               ),
                             ),
-                            SizedBox(width: 110),
-                            Text(
+                            const SizedBox(width: 110),
+                            const Text(
                               "Login",
                               style: TextStyle(
                                 color: Color(0xFF19480D),
@@ -74,10 +75,10 @@ class Login extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 60),
+                        const SizedBox(height: 60),
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: "Email",
                             labelStyle: TextStyle(
                               color: Color(0xFF19480D),
@@ -91,8 +92,7 @@ class Login extends StatelessWidget {
                               borderSide: BorderSide.none,
                             ),
                             prefixIcon: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 10),
+                              padding: EdgeInsets.only(left: 20, right: 10),
                               child: Icon(
                                 Icons.email,
                                 color: Color(0xFF8AD777),
@@ -100,11 +100,11 @@ class Login extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: true,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: "Senha",
                             labelStyle: TextStyle(
                               color: Color(0xFF19480D),
@@ -118,8 +118,7 @@ class Login extends StatelessWidget {
                               borderSide: BorderSide.none,
                             ),
                             prefixIcon: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 10),
+                              padding: EdgeInsets.only(left: 20, right: 10),
                               child: Icon(
                                 Icons.lock,
                                 color: Color(0xFF8AD777),
@@ -127,7 +126,7 @@ class Login extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 20),
                           child: Align(
@@ -138,10 +137,10 @@ class Login extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                backgroundColor: Color(0xFF32881C),
+                                backgroundColor: const Color(0xFF32881C),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
                                     vertical: 12, horizontal: 40),
                                 child: Text(
                                   "Entrar",
@@ -155,12 +154,12 @@ class Login extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Container(
                           height: 2,
-                          color: Color(0xFF32881C),
+                          color: const Color(0xFF32881C),
                         ),
-                        SizedBox(height: 60),
+                        const SizedBox(height: 60),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 20),
                           child: Align(
@@ -170,7 +169,7 @@ class Login extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Cadastro(),
+                                    builder: (context) => const CadastrarUser(),
                                   ),
                                 );
                               },
@@ -178,10 +177,10 @@ class Login extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                backgroundColor: Color(0xFF32881C),
+                                backgroundColor: const Color(0xFF32881C),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
                                     vertical: 12, horizontal: 40),
                                 child: Text(
                                   "Cadastrar-se",
