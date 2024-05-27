@@ -4,10 +4,12 @@ class registrarPraga extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Ana Carla, Colocar o  AppBar !
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        toolbarHeight: 70,
         title: Row(
           children: [
+            SizedBox(width: 5),
             Image.asset(
               'lib/img/mao.png',
               width: 40,
@@ -20,88 +22,120 @@ class registrarPraga extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xFF6EC359),
       ),
       resizeToAvoidBottomInset: false,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color(0xFFB0C6B2),
-              ),
-              padding: EdgeInsets.all(40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  camposTexto("Nome"),
-                  SizedBox(height: 10),
-                  camposTexto("Tamanho"),
-                  SizedBox(height: 30),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Pontos de Amostragem',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
+      body: Stack(
+        children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SingleChildScrollView(
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color(0xFFB0C6B2),
                   ),
-                  SizedBox(height: 20),
-                  Table(
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  padding: EdgeInsets.all(40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TableRow(
+                      camposTexto("Nome"),
+                      SizedBox(height: 10),
+                      camposTexto("Tamanho"),
+                      SizedBox(height: 30),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Pontos de Amostragem',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Table(
+                        defaultVerticalAlignment:
+                            TableCellVerticalAlignment.middle,
                         children: [
-                          numerosPontosAmostragem(1),
-                          numerosPontosAmostragem(2),
-                          numerosPontosAmostragem(3),
-                          numerosPontosAmostragem(4),
-                          numerosPontosAmostragem(5),
+                          TableRow(
+                            children: [
+                              numerosPontosAmostragem(1),
+                              numerosPontosAmostragem(2),
+                              numerosPontosAmostragem(3),
+                              numerosPontosAmostragem(4),
+                              numerosPontosAmostragem(5),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              camposPontoAmostragem(1),
+                              camposPontoAmostragem(2),
+                              camposPontoAmostragem(3),
+                              camposPontoAmostragem(4),
+                              camposPontoAmostragem(5),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              numerosPontosAmostragem(6),
+                              numerosPontosAmostragem(7),
+                              numerosPontosAmostragem(8),
+                              numerosPontosAmostragem(9),
+                              numerosPontosAmostragem(10),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              camposPontoAmostragem(6),
+                              camposPontoAmostragem(7),
+                              camposPontoAmostragem(8),
+                              camposPontoAmostragem(9),
+                              camposPontoAmostragem(10),
+                            ],
+                          ),
                         ],
                       ),
-                      TableRow(
-                        children: [
-                          camposPontoAmostragem(1),
-                          camposPontoAmostragem(2),
-                          camposPontoAmostragem(3),
-                          camposPontoAmostragem(4),
-                          camposPontoAmostragem(5),
-                        ],
-                      ),
-                      TableRow(
-                        children: [
-                          numerosPontosAmostragem(6),
-                          numerosPontosAmostragem(7),
-                          numerosPontosAmostragem(8),
-                          numerosPontosAmostragem(9),
-                          numerosPontosAmostragem(10),
-                        ],
-                      ),
-                      TableRow(
-                        children: [
-                          camposPontoAmostragem(6),
-                          camposPontoAmostragem(7),
-                          camposPontoAmostragem(8),
-                          camposPontoAmostragem(9),
-                          camposPontoAmostragem(10),
-                        ],
-                      ),
+                      SizedBox(height: 30),
+                      camposTexto("Nível de Controle"),
+                      SizedBox(height: 20),
                     ],
                   ),
-                  SizedBox(height: 30),
-                  camposTexto("Nível de Controle"),
-                  SizedBox(height: 20),
-                ],
+                ),
               ),
             ),
           ),
-        ),
+          Positioned(
+            top: 0,
+            left: 10,
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      'lib/img/back.png',
+                      height: 50,
+                      width: 45,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 0),
+                Image.asset(
+                  'lib/img/faixaPraga.png',
+                  height: 120,
+                  width: 230,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 45),
+        padding: const EdgeInsets.only(bottom: 30),
         child: TextButton(
           onPressed: () {},
           style: TextButton.styleFrom(
