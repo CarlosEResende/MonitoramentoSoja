@@ -6,8 +6,11 @@ class cadastrosSoja extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          toolbarHeight: 70,
           title: Row(
             children: [
+              SizedBox(width: 5),
               Image.asset(
                 'lib/img/mao.png',
                 width: 40,
@@ -16,11 +19,11 @@ class cadastrosSoja extends StatelessWidget {
               SizedBox(width: 15),
               Text(
                 'SojaSafe',
-                style: TextStyle(fontSize: 26),
+                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
               ),
             ],
           ),
-          backgroundColor: Colors.green,
+          backgroundColor: Color(0xFF6EC359),
         ),
         body: Stack(
           children: [
@@ -98,7 +101,6 @@ class cadastrosSoja extends StatelessWidget {
                 ),
               ),
             ),
-            // Barra entre o botão "Registrar" e os outros dois botões
             Positioned(
               top: 500,
               left: 30,
