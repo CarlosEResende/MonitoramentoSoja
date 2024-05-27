@@ -1,13 +1,16 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/pages/pagina_inicial.dart';
 import 'repository/conexao.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() async {
-  sqfliteFfiInit();
-
-  databaseFactory = databaseFactoryFfi;
   WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
 
   await Conexao.instance.initDB();
   runApp(const MyApp());

@@ -40,220 +40,251 @@ class _CadastrarUserState extends State<CadastrarUser> {
 
     return Scaffold(
       body: SingleChildScrollView(
-        key: _formKey,
-        child: SizedBox(
-          height: 950,
-          child: Stack(
-            children: [
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color.fromARGB(255, 255, 255, 255)],
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 80,
-                left: 80,
-                child: Image.asset(
-                  'lib/img/logos.png',
-                  height: 180,
-                  width: 280,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned.fill(
-                top: 320.0,
-                child: Container(
+        child: Form(
+          key: _formKey,
+          child: SizedBox(
+            height: 1000,
+            child: Stack(
+              children: [
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
                   decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(60),
-                      topRight: Radius.circular(60),
+                    gradient: LinearGradient(
+                      colors: [Color.fromARGB(255, 255, 255, 255)],
                     ),
-                    color: Color(0xFFB1D3A9),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Row(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Image.asset(
-                                'lib/img/back.png',
-                                height: 40,
-                                width: 40,
+                ),
+                Positioned(
+                  top: 80,
+                  left: 80,
+                  child: Image.asset(
+                    'lib/img/logos.png',
+                    height: 180,
+                    width: 280,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned.fill(
+                  top: 320.0,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(60),
+                        topRight: Radius.circular(60),
+                      ),
+                      color: Color(0xFFB1D3A9),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Row(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Image.asset(
+                                  'lib/img/back.png',
+                                  height: 40,
+                                  width: 40,
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 90),
-                            const Text(
-                              "Cadastro",
-                              style: TextStyle(
+                              const SizedBox(width: 90),
+                              const Text(
+                                "Cadastro",
+                                style: TextStyle(
+                                  color: Color(0xFF19480D),
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 60),
+                          TextFormField(
+                            onChanged: (value) => usuarioDTO.nome = value,
+                            decoration: const InputDecoration(
+                              labelText: "Nome",
+                              labelStyle: TextStyle(
                                 color: Color(0xFF19480D),
-                                fontSize: 28,
                                 fontWeight: FontWeight.bold,
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 60),
-                        TextFormField(
-                          onChanged: (value) => usuarioDTO.nome = value,
-                          decoration: const InputDecoration(
-                            labelText: "Nome",
-                            labelStyle: TextStyle(
-                              color: Color(0xFF19480D),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide.none,
-                            ),
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.only(left: 20, right: 10),
-                              child: Icon(
-                                Icons.person,
-                                color: Color(0xFF8AD777),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide.none,
                               ),
-                            ),
-                          ),
-                          controller: myControllerNr1,
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          onChanged: (value) => usuarioDTO.email = value,
-                          decoration: const InputDecoration(
-                            labelText: "Email",
-                            labelStyle: TextStyle(
-                              color: Color(0xFF19480D),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide.none,
-                            ),
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.only(left: 20, right: 10),
-                              child: Icon(
-                                Icons.email,
-                                color: Color(0xFF8AD777),
-                              ),
-                            ),
-                          ),
-                          controller: myControllerNr2,
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          onChanged: (value) => usuarioDTO.senha = value,
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            labelText: "Senha",
-                            labelStyle: TextStyle(
-                              color: Color(0xFF19480D),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide.none,
-                            ),
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.only(left: 20, right: 10),
-                              child: Icon(
-                                Icons.lock,
-                                color: Color(0xFF8AD777),
-                              ),
-                            ),
-                          ),
-                          controller: myControllerNr3,
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          onChanged: (value) => usuarioDTO.confirmar = value,
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            labelText: "Confirmar Senha",
-                            labelStyle: TextStyle(
-                              color: Color(0xFF19480D),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide.none,
-                            ),
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.only(left: 20, right: 10),
-                              child: Icon(
-                                Icons.lock,
-                                color: Color(0xFF8AD777),
-                              ),
-                            ),
-                          ),
-                          controller: myControllerNr4,
-                        ),
-                        const SizedBox(height: 40),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 20),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                _inserirUsuario(usuarioDTO);
-                                _clear();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text("Salvo em SQLite!")),
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.only(left: 20, right: 10),
+                                child: Icon(
+                                  Icons.person,
+                                  color: Color(0xFF8AD777),
                                 ),
-                                backgroundColor: const Color(0xFF32881C),
                               ),
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 40),
-                                child: Text(
-                                  "Cadastrar",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                            ),
+                            controller: myControllerNr1,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Nome não pode ser vazio';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          TextFormField(
+                            onChanged: (value) => usuarioDTO.email = value,
+                            decoration: const InputDecoration(
+                              labelText: "Email",
+                              labelStyle: TextStyle(
+                                color: Color(0xFF19480D),
+                                fontWeight: FontWeight.bold,
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide.none,
+                              ),
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.only(left: 20, right: 10),
+                                child: Icon(
+                                  Icons.email,
+                                  color: Color(0xFF8AD777),
+                                ),
+                              ),
+                            ),
+                            controller: myControllerNr2,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Email não pode ser vazio';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          TextFormField(
+                            onChanged: (value) => usuarioDTO.senha = value,
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                              labelText: "Senha",
+                              labelStyle: TextStyle(
+                                color: Color(0xFF19480D),
+                                fontWeight: FontWeight.bold,
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide.none,
+                              ),
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.only(left: 20, right: 10),
+                                child: Icon(
+                                  Icons.lock,
+                                  color: Color(0xFF8AD777),
+                                ),
+                              ),
+                            ),
+                            controller: myControllerNr3,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Senha não pode ser vazia';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          TextFormField(
+                            onChanged: (value) => usuarioDTO.confirmar = value,
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                              labelText: "Confirmar Senha",
+                              labelStyle: TextStyle(
+                                color: Color(0xFF19480D),
+                                fontWeight: FontWeight.bold,
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide.none,
+                              ),
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.only(left: 20, right: 10),
+                                child: Icon(
+                                  Icons.lock,
+                                  color: Color(0xFF8AD777),
+                                ),
+                              ),
+                            ),
+                            controller: myControllerNr4,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Confirmar Senha não pode ser vazia';
+                              }
+                              if (value != myControllerNr3.text) {
+                                return 'As senhas não correspondem';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 40),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _inserirUsuario(usuarioDTO);
+                                    _clear();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text("Salvo em SQLite!")),
+                                    );
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  backgroundColor: const Color(0xFF32881C),
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 12, horizontal: 40),
+                                  child: Text(
+                                    "Cadastrar",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        Container(
-                          height: 2,
-                          color: const Color(0xFF32881C),
-                        ),
-                      ],
+                          const SizedBox(height: 20),
+                          Container(
+                            height: 2,
+                            color: const Color(0xFF32881C),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -273,12 +304,12 @@ class _CadastrarUserState extends State<CadastrarUser> {
     await dao.insert(usuario);
     dao = UsuarioDAO();
 
-    // Future<UsuarioDTO?> lastUser = dao.obterUltimo();
-    // UsuarioDTO? cantor = await lastUser;
+    Future<UsuarioDTO?> lastUser = dao.obterUltimo();
+    UsuarioDTO? cantor = await lastUser;
 
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   SnackBar(
-    //       backgroundColor: Colors.lightBlue, content: Text(cantor.toString())),
-    // );
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          backgroundColor: Colors.lightBlue, content: Text(cantor.toString())),
+    );
   }
 }
