@@ -11,7 +11,7 @@ class CadastrarUser extends StatefulWidget {
 }
 
 class _CadastrarUserState extends State<CadastrarUser> {
-  final _formKey = GlobalKey<FormState>();
+  final _cadKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class _CadastrarUserState extends State<CadastrarUser> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
-          key: _formKey,
+          key: _cadKey,
           child: SizedBox(
             height: 1000,
             child: Stack(
@@ -243,12 +243,14 @@ class _CadastrarUserState extends State<CadastrarUser> {
                               alignment: Alignment.center,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
+                                  if (_cadKey.currentState!.validate()) {
                                     _inserirUsuario(usuarioDTO);
-                                    _clear();
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          content: Text("Salvo em SQLite!")),
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PaginaInicial(),
+                                      ),
                                     );
                                   }
                                 },
@@ -301,15 +303,24 @@ class _CadastrarUserState extends State<CadastrarUser> {
 
   Future<void> _inserirUsuario(UsuarioDTO usuario) async {
     UsuarioDAO dao = UsuarioDAO();
-    await dao.insert(usuario);
-    dao = UsuarioDAO();
 
-    Future<UsuarioDTO?> lastUser = dao.obterUltimo();
-    UsuarioDTO? cantor = await lastUser;
+    UsuarioDTO? usuarioExistente = await dao.selectByEmail(usuario.email);
+    if (usuarioExistente == null) {
+      await dao.insert(usuario);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Usuário cadastrado com sucesso!")),
+      );
+      Future<UsuarioDTO?> lastUser = dao.obterUltimo();
+      UsuarioDTO? user = await lastUser;
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          backgroundColor: Colors.lightBlue, content: Text(cantor.toString())),
-    );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(user.toString())),
+      );
+      _clear();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Este email já está cadastrado!")),
+      );
+    }
   }
 }

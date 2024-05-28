@@ -106,12 +106,8 @@ class UsuarioDAO {
     });
   }
 
-  Future<void> printAllUsuarios() async {
-    List<UsuarioDTO> usuarios = await selectAll();
-    print('ID | Nome       | Email');
-    print('---|------------|-------------------');
-    for (var usuario in usuarios) {
-      print('${usuario.id} | ${usuario.nome} | ${usuario.email}');
-    }
+  Future<void> deleteAll() async {
+    final db = await _db;
+    await db.delete('usuario');
   }
 }

@@ -7,7 +7,7 @@ class Conexao {
     '''CREATE TABLE usuario(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT,
-      email TEXT,
+      email TEXT UNIQUE,
       senha TEXT)''',
     '''CREATE TABLE soja(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
