@@ -303,8 +303,6 @@ class _CadastrarUserState extends State<CadastrarUser> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Usuário cadastrado com sucesso!")),
       );
-      Future<UsuarioDTO?> lastUser = dao.obterUltimo();
-      UsuarioDTO? user = await lastUser;
 
       Navigator.pushReplacement(
         context,
