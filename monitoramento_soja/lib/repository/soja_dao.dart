@@ -31,6 +31,11 @@ class SojaDAO {
     );
   }
 
+  Future<void> deleteAll() async {
+    final db = await _db;
+    await db.delete('soja');
+  }
+
   Future<SojaDTO?> selectById(String id) async {
     final db = await _db;
     List<Map<String, dynamic>> maps = await db.query(
@@ -41,14 +46,14 @@ class SojaDAO {
     if (maps.isNotEmpty) {
       return SojaDTO(
           id: maps[0]['id'],
-          idUsuario: maps[0]['idUsuario'],
+          id_usuario: maps[0]['id_usuario'],
           data: maps[0]['data'],
-          dataSemeadura: maps[0]['dataSemeadura'],
+          data_semeadura: maps[0]['data_semeadura'],
           monitor: maps[0]['monitor'],
-          loteTalhao: maps[0]['loteTalhao'],
-          tipoSoja: maps[0]['tipoSoja'],
+          lote_talhao: maps[0]['lote_talhao'],
+          tipo_soja: maps[0]['tipo_soja'],
           municipio: maps[0]['municipio'],
-          estagioSoja: maps[0]['estagioSoja']);
+          estagio_soja: maps[0]['estagio_soja']);
     } else {
       return null;
     }
@@ -64,14 +69,14 @@ class SojaDAO {
     return List.generate(maps.length, (i) {
       return SojaDTO(
           id: maps[i]['id'],
-          idUsuario: maps[i]['idUsuario'],
+          id_usuario: maps[i]['id_usuario'],
           data: maps[i]['data'],
-          dataSemeadura: maps[i]['dataSemeadura'],
+          data_semeadura: maps[i]['data_semeadura'],
           monitor: maps[i]['monitor'],
-          loteTalhao: maps[i]['loteTalhao'],
-          tipoSoja: maps[i]['tipoSoja'],
+          lote_talhao: maps[i]['lote_talhao'],
+          tipo_soja: maps[i]['tipo_soja'],
           municipio: maps[i]['municipio'],
-          estagioSoja: maps[i]['estagioSoja']);
+          estagio_soja: maps[i]['estagio_soja']);
     });
   }
 
@@ -81,14 +86,36 @@ class SojaDAO {
     return List.generate(maps.length, (i) {
       return SojaDTO(
           id: maps[i]['id'],
-          idUsuario: maps[i]['idUsuario'],
+          id_usuario: maps[i]['id_usuario'],
           data: maps[i]['data'],
-          dataSemeadura: maps[i]['dataSemeadura'],
+          data_semeadura: maps[i]['data_semeadura'],
           monitor: maps[i]['monitor'],
-          loteTalhao: maps[i]['loteTalhao'],
-          tipoSoja: maps[i]['tipoSoja'],
+          lote_talhao: maps[i]['lote_talhao'],
+          tipo_soja: maps[i]['tipo_soja'],
           municipio: maps[i]['municipio'],
-          estagioSoja: maps[i]['estagioSoja']);
+          estagio_soja: maps[i]['estagio_soja']);
     });
+  }
+
+  Future<SojaDTO> obterUltimo() async {
+    try {
+      final db = await _db;
+
+      List<Map<String, dynamic>> maps =
+          await db.rawQuery('SELECT * FROM usuario ORDER BY id DESC LIMIT 1');
+
+      if (maps.isNotEmpty) {
+        return SojaDTO(
+          id: maps[0]['id'],
+          data: maps[0]['data'],
+          id_usuario: maps[0]['id_usuario'],
+        );
+      } else {
+        return SojaDTO(id: 0, data: '', id_usuario: 0);
+      }
+    } catch (e) {
+      print('Erro: $e');
+      return SojaDTO(id: 0, data: '', id_usuario: 0);
+    }
   }
 }

@@ -14,8 +14,10 @@ class Conexao {
       id_usuario INTEGER,
       data TEXT,
       data_semeadura TEXT,
-      monitor TEXT, lote_talhao TEXT,
-      tipo_soja TEXT, municipio TEXT,
+      monitor TEXT,
+      lote_talhao TEXT,
+      tipo_soja TEXT,
+      municipio TEXT,
       estagio_soja TEXT,
       FOREIGN KEY (id_usuario) REFERENCES usuario(id))''',
     '''CREATE TABLE doenca(
@@ -72,16 +74,6 @@ class Conexao {
       media DOUBLE,
       FOREIGN KEY (id_soja) REFERENCES soja(id))'''
   ];
-
-  static const table = 'soja';
-  static const columnId = 'id';
-  static const columnData = 'data';
-  static const columnDataSemeadura = 'data_semeadura';
-  static const columnMonitor = 'monitor';
-  static const columnLoteTalhao = 'lote_talhao';
-  static const columnTipoSoja = 'tipo_soja';
-  static const columnMunicipio = 'municipio';
-  static const columnEstagioSoja = 'estagio_soja';
 
   //singleton
   Conexao._privateConstructor();

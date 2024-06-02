@@ -1,38 +1,38 @@
 class PragaEntity {
   final int id;
-  final int idSoja;
-  final String tipoPraga;
+  final int id_soja;
+  final String tipo_praga;
   final String tamanho;
-  final int pontoAmostragem1;
-  final int pontoAmostragem2;
-  final int pontoAmostragem3;
-  final int pontoAmostragem4;
-  final int pontoAmostragem5;
-  final int pontoAmostragem6;
-  final int pontoAmostragem7;
-  final int pontoAmostragem8;
-  final int pontoAmostragem9;
-  final int pontoAmostragem10;
+  final int ponto_amostragem_1;
+  final int ponto_amostragem_2;
+  final int ponto_amostragem_3;
+  final int ponto_amostragem_4;
+  final int ponto_amostragem_5;
+  final int ponto_amostragem_6;
+  final int ponto_amostragem_7;
+  final int ponto_amostragem_8;
+  final int ponto_amostragem_9;
+  final int ponto_amostragem_10;
   final int total;
   final double media;
-  final String nivelControle;
+  final String nivel_controle;
 
   PragaEntity(
       {required this.id,
-      required this.idSoja,
-      required this.tipoPraga,
+      required this.id_soja,
+      required this.tipo_praga,
       required this.tamanho,
-      required this.pontoAmostragem1,
-      required this.pontoAmostragem2,
-      required this.pontoAmostragem3,
-      required this.pontoAmostragem4,
-      required this.pontoAmostragem5,
-      required this.pontoAmostragem6,
-      required this.pontoAmostragem7,
-      required this.pontoAmostragem8,
-      required this.pontoAmostragem9,
-      required this.pontoAmostragem10,
+      required this.ponto_amostragem_1,
+      required this.ponto_amostragem_2,
+      required this.ponto_amostragem_3,
+      required this.ponto_amostragem_4,
+      required this.ponto_amostragem_5,
+      required this.ponto_amostragem_6,
+      required this.ponto_amostragem_7,
+      required this.ponto_amostragem_8,
+      required this.ponto_amostragem_9,
+      required this.ponto_amostragem_10,
       required this.total,
       required this.media,
-      required this.nivelControle});
+      required this.nivel_controle});
 }

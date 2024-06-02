@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/usuario_dto.dart';
-import 'package:monitoramento_soja/pages/pagina_inicial.dart';
+import 'package:monitoramento_soja/pages/paginaRegistros.dart';
 import 'package:monitoramento_soja/repository/usuario_dao.dart';
 
 class CadastrarUser extends StatefulWidget {
@@ -245,13 +245,6 @@ class _CadastrarUserState extends State<CadastrarUser> {
                                 onPressed: () {
                                   if (_cadKey.currentState!.validate()) {
                                     _inserirUsuario(usuarioDTO);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PaginaInicial(),
-                                      ),
-                                    );
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -316,6 +309,16 @@ class _CadastrarUserState extends State<CadastrarUser> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(user.toString())),
       );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CadastrosSoja(
+            usuario: usuario,
+          ),
+        ),
+      );
+
       _clear();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/pages/PaginaCadastro.dart';
 import 'package:monitoramento_soja/pages/PaginaLogin.dart';
-import 'package:monitoramento_soja/pages/RegistrarPraga.dart';
-import 'package:monitoramento_soja/pages/RegistrarDoenca.dart';
-import 'package:monitoramento_soja/pages/RegistrarPredador.dart';
 
 class PaginaInicial extends StatelessWidget {
   const PaginaInicial({super.key});
@@ -95,7 +92,7 @@ class PaginaInicial extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 190),
+                    padding: const EdgeInsets.only(bottom: 100),
                     child: OutlinedButton(
                       onPressed: () {
                         Navigator.push(

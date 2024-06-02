@@ -2,63 +2,68 @@ import 'package:monitoramento_soja/entitites/soja_entity.dart';
 
 class SojaDTO {
   int? id;
-  int? idUsuario;
+  int? id_usuario;
   String data;
-  String dataSemeadura;
+  String data_semeadura;
   String monitor;
-  String loteTalhao;
-  String tipoSoja;
+  String lote_talhao;
+  String tipo_soja;
   String municipio;
-  String estagioSoja;
+  String estagio_soja;
 
   SojaDTO(
       {this.id,
-      this.idUsuario,
+      this.id_usuario,
       this.data = '',
-      this.dataSemeadura = '',
+      this.data_semeadura = '',
       this.monitor = '',
-      this.loteTalhao = '',
-      this.tipoSoja = '',
+      this.lote_talhao = '',
+      this.tipo_soja = '',
       this.municipio = '',
-      this.estagioSoja = ''});
+      this.estagio_soja = ''});
 
   SojaEntity toEntity() {
     return SojaEntity(
         id: id ?? 0,
-        idUsuario: idUsuario ?? 0,
+        id_usuario: id_usuario ?? 0,
         data: data,
-        dataSemeadura: dataSemeadura,
+        data_semeadura: data_semeadura,
         monitor: monitor,
-        loteTalhao: loteTalhao,
-        tipoSoja: tipoSoja,
+        lote_talhao: lote_talhao,
+        tipo_soja: tipo_soja,
         municipio: municipio,
-        estagioSoja: estagioSoja);
+        estagio_soja: estagio_soja);
   }
 
   factory SojaDTO.fromJson(Map<String, dynamic> json) {
     return SojaDTO(
         id: json['id'],
-        idUsuario: json['id_usuario'],
+        id_usuario: json['id_usuario'],
         data: json['data'],
-        dataSemeadura: json['data_semeadura'],
+        data_semeadura: json['data_semeadura'],
         monitor: json['monitor'],
-        loteTalhao: json['lote_talhao'],
-        tipoSoja: json['tipo_soja'],
+        lote_talhao: json['lote_talhao'],
+        tipo_soja: json['tipo_soja'],
         municipio: json['municipio'],
-        estagioSoja: json['estagio_soja']);
+        estagio_soja: json['estagio_soja']);
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'id_usuario': idUsuario,
+      'id_usuario': id_usuario,
       'data': data,
-      'data_semeadura': dataSemeadura,
+      'data_semeadura': data_semeadura,
       'monitor': monitor,
-      'lote_talhao': loteTalhao,
-      'tipo_soja': tipoSoja,
+      'lote_talhao': lote_talhao,
+      'tipo_soja': tipo_soja,
       'municipio': municipio,
-      'estagio_soja': estagioSoja
+      'estagio_soja': estagio_soja
     };
+  }
+
+  @override
+  String toString() {
+    return 'SojaDTO(id: $id, id_usuario: $id_usuario, data: $data, data_semeadura: $data_semeadura, monitor: $monitor, lote_talhao: $lote_talhao, tipo_soja: $tipo_soja, municipio: $municipio, estagio_soja: $estagio_soja)';
   }
 }

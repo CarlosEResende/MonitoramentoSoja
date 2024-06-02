@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/usuario_dto.dart';
-import 'package:monitoramento_soja/pages/pagina_inicial.dart';
+import 'package:monitoramento_soja/pages/paginaRegistros.dart';
 import 'package:monitoramento_soja/pages/PaginaCadastro.dart';
 import 'package:monitoramento_soja/repository/usuario_dao.dart';
 
@@ -60,12 +60,7 @@ class Login extends StatelessWidget {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PaginaInicial()),
-                                  );
+                                  Navigator.pop(context);
                                 },
                                 child: Image.asset(
                                   'lib/img/back.png',
@@ -183,11 +178,12 @@ class Login extends StatelessWidget {
                                           content: Text('Login feito'),
                                         ),
                                       );
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              const PaginaInicial(),
+                                          builder: (context) => CadastrosSoja(
+                                            usuario: usuario,
+                                          ),
                                         ),
                                       );
                                     }
@@ -226,7 +222,7 @@ class Login extends StatelessWidget {
                               alignment: Alignment.center,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.push(
+                                  Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>

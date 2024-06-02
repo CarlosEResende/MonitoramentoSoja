@@ -23,12 +23,12 @@ class UsuarioDAO {
     );
   }
 
-  Future<void> delete(String id) async {
+  Future<void> delete(String email) async {
     final db = await _db;
     await db.delete(
       'usuario',
-      where: 'id = ?',
-      whereArgs: [id],
+      where: 'email = ?',
+      whereArgs: [email],
     );
   }
 
