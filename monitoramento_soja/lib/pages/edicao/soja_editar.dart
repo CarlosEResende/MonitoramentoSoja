@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/soja_dto.dart';
 import 'package:monitoramento_soja/repository/soja_dao.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class EditarSoja extends StatefulWidget {
   final SojaDTO soja;
@@ -16,6 +17,7 @@ class _EditarSojaState extends State<EditarSoja> {
 
   late SojaDTO sojaDTO;
 
+  final maskFormatter = MaskTextInputFormatter(mask: '##/##/####');
   final myControllerNr1 = TextEditingController();
   final myControllerNr2 = TextEditingController();
   final myControllerNr3 = TextEditingController();
@@ -98,7 +100,8 @@ class _EditarSojaState extends State<EditarSoja> {
                               child: TextFormField(
                                 onChanged: (value) => sojaDTO.data = value,
                                 controller: myControllerNr1,
-                                keyboardType: TextInputType.text,
+                                inputFormatters: [maskFormatter],
+                                keyboardType: TextInputType.datetime,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Por favor, preencha este campo';
@@ -125,7 +128,8 @@ class _EditarSojaState extends State<EditarSoja> {
                                 onChanged: (value) =>
                                     sojaDTO.data_semeadura = value,
                                 controller: myControllerNr2,
-                                keyboardType: TextInputType.text,
+                                inputFormatters: [maskFormatter],
+                                keyboardType: TextInputType.datetime,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Por favor, preencha este campo';
