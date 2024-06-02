@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/soja_dto.dart';
 import 'package:monitoramento_soja/dtos/usuario_dto.dart';
-import 'package:monitoramento_soja/pages/listagem/itens_lista.dart';
+import 'package:monitoramento_soja/pages/listagem/listas.dart';
 import 'package:monitoramento_soja/repository/soja_dao.dart';
 
 class SojaListagem extends StatefulWidget {
@@ -68,10 +68,6 @@ class _SojaListagemState extends State<SojaListagem> {
             return const Center(child: Text('Não há dados cadastrados.'));
           }
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => (SojaDAO().deleteAll()),
-        child: const Icon(Icons.add),
       ),
     );
   }

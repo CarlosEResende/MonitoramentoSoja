@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/predador_dto.dart';
 import 'package:monitoramento_soja/dtos/soja_dto.dart';
-import 'package:monitoramento_soja/pages/listagem/itens_lista.dart';
+import 'package:monitoramento_soja/pages/listagem/listas.dart';
 import 'package:monitoramento_soja/repository/predador_dao.dart';
 
 class PredListagem extends StatefulWidget {
@@ -53,8 +53,8 @@ class _PredListagemState extends State<PredListagem> {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
             List<PredadorDTO> preds = snapshot.data!;
-            List<SojaLista> listaItensLista = preds.map((pred) {
-              return SojaLista(pred.media.toString(), pred.total.toString(),
+            List<PredadorLista> listaItensLista = preds.map((pred) {
+              return PredadorLista(pred.media.toString(), pred.total.toString(),
                   pred.id.toString());
             }).toList();
 
@@ -68,9 +68,6 @@ class _PredListagemState extends State<PredListagem> {
             return const Center(child: Text('Não há dados cadastrados.'));
           }
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
       ),
     );
   }

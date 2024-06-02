@@ -16,16 +16,16 @@ class _RegistrarDoencaState extends State<RegistrarDoenca> {
 
   late DoencaDTO doencaDTO;
 
-  final myControllerNr1 = TextEditingController();
-  final myControllerNr2 = TextEditingController();
-  final myControllerNr3 = TextEditingController();
-  final myControllerNr4 = TextEditingController();
-  final myControllerNr5 = TextEditingController();
-  final myControllerNr6 = TextEditingController();
-  final myControllerNr7 = TextEditingController();
-  final myControllerNr8 = TextEditingController();
-  final myControllerNr9 = TextEditingController();
-  final myControllerNr10 = TextEditingController();
+  final myControllerNr1 = TextEditingController(text: "0");
+  final myControllerNr2 = TextEditingController(text: "0");
+  final myControllerNr3 = TextEditingController(text: "0");
+  final myControllerNr4 = TextEditingController(text: "0");
+  final myControllerNr5 = TextEditingController(text: "0");
+  final myControllerNr6 = TextEditingController(text: "0");
+  final myControllerNr7 = TextEditingController(text: "0");
+  final myControllerNr8 = TextEditingController(text: "0");
+  final myControllerNr9 = TextEditingController(text: "0");
+  final myControllerNr10 = TextEditingController(text: "0");
   final myControllerNr11 = TextEditingController();
 
   @override
@@ -454,6 +454,27 @@ class _RegistrarDoencaState extends State<RegistrarDoenca> {
 
   Future<void> _inserirDoenca(DoencaDTO doenca) async {
     DoencaDAO dao = DoencaDAO();
+
+    List<int?> pontosAmostragem = [
+      doenca.ponto_amostragem_1,
+      doenca.ponto_amostragem_2,
+      doenca.ponto_amostragem_3,
+      doenca.ponto_amostragem_4,
+      doenca.ponto_amostragem_5,
+      doenca.ponto_amostragem_6,
+      doenca.ponto_amostragem_7,
+      doenca.ponto_amostragem_8,
+      doenca.ponto_amostragem_9,
+      doenca.ponto_amostragem_10
+    ];
+
+    pontosAmostragem = pontosAmostragem.where((p) => p != null).toList();
+    int soma = pontosAmostragem.fold(0, (sum, p) => sum + (p ?? 0));
+    double media =
+        pontosAmostragem.isNotEmpty ? soma / pontosAmostragem.length : 0;
+
+    doenca.total = soma;
+    doenca.media = media;
 
     await dao.insert(doenca);
 

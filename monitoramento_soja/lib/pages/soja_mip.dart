@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/soja_dto.dart';
+import 'package:monitoramento_soja/pages/RegistrarDoenca.dart';
 import 'package:monitoramento_soja/pages/RegistrarPraga.dart';
 import 'package:monitoramento_soja/pages/RegistrarPredador.dart';
+import 'package:monitoramento_soja/pages/listagem/doenca_listagem.dart';
+import 'package:monitoramento_soja/pages/listagem/praga_listagem.dart';
 import 'package:monitoramento_soja/pages/listagem/predador_listagem.dart';
 
 class SojaMip extends StatelessWidget {
@@ -36,46 +39,217 @@ class SojaMip extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                buildCategorySection(
-                  context,
-                  'Predadores',
-                  MaterialPageRoute(
-                    builder: (context) => RegistrarPredador(
-                      soja: soja,
-                    ),
-                  ),
-                  MaterialPageRoute(
-                    builder: (context) => PredListagem(
-                      soja: soja,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 16.0),
+                  child: Column(
+                    children: [
+                      const Row(
+                        children: [
+                          SizedBox(width: 16),
+                          Text(
+                            'Predadores',
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegistrarPredador(
+                                    soja: soja,
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              side: const BorderSide(color: Colors.green),
+                            ),
+                            child: const Row(
+                              children: [
+                                Icon(Icons.add, color: Colors.green),
+                                SizedBox(width: 8),
+                                Text('Registrar',
+                                    style: TextStyle(color: Colors.green)),
+                              ],
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PredListagem(
+                                    soja: soja,
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              side: const BorderSide(color: Colors.green),
+                            ),
+                            child: const Row(
+                              children: [
+                                Icon(Icons.list, color: Colors.green),
+                                SizedBox(width: 8),
+                                Text('Lista',
+                                    style: TextStyle(color: Colors.green)),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                buildCategorySection(
-                  context,
-                  'Doenças',
-                  MaterialPageRoute(
-                    builder: (context) => RegistrarPraga(
-                      soja: soja,
-                    ),
-                  ),
-                  MaterialPageRoute(
-                    builder: (context) => PredListagem(
-                      soja: soja,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 16.0),
+                  child: Column(
+                    children: [
+                      const Row(
+                        children: [
+                          SizedBox(width: 16),
+                          Text(
+                            'Doenças',
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegistrarDoenca(
+                                    soja: soja,
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              side: const BorderSide(color: Colors.green),
+                            ),
+                            child: const Row(
+                              children: [
+                                Icon(Icons.add, color: Colors.green),
+                                SizedBox(width: 8),
+                                Text('Registrar',
+                                    style: TextStyle(color: Colors.green)),
+                              ],
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DoencaListagem(
+                                    soja: soja,
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              side: const BorderSide(color: Colors.green),
+                            ),
+                            child: const Row(
+                              children: [
+                                Icon(Icons.list, color: Colors.green),
+                                SizedBox(width: 8),
+                                Text('Lista',
+                                    style: TextStyle(color: Colors.green)),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                buildCategorySection(
-                  context,
-                  'Pragas',
-                  MaterialPageRoute(
-                    builder: (context) => RegistrarPraga(
-                      soja: soja,
-                    ),
-                  ),
-                  MaterialPageRoute(
-                    builder: (context) => PredListagem(
-                      soja: soja,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 16.0),
+                  child: Column(
+                    children: [
+                      const Row(
+                        children: [
+                          SizedBox(width: 16),
+                          Text(
+                            'Pragas',
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegistrarPraga(
+                                    soja: soja,
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              side: const BorderSide(color: Colors.green),
+                            ),
+                            child: const Row(
+                              children: [
+                                Icon(Icons.add, color: Colors.green),
+                                SizedBox(width: 8),
+                                Text('Registrar',
+                                    style: TextStyle(color: Colors.green)),
+                              ],
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PragaListagem(
+                                    soja: soja,
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              side: const BorderSide(color: Colors.green),
+                            ),
+                            child: const Row(
+                              children: [
+                                Icon(Icons.list, color: Colors.green),
+                                SizedBox(width: 8),
+                                Text('Lista',
+                                    style: TextStyle(color: Colors.green)),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ],

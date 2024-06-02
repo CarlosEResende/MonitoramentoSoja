@@ -16,16 +16,16 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
 
   late PragaDTO pragaDTO;
 
-  final myControllerNr1 = TextEditingController();
-  final myControllerNr2 = TextEditingController();
-  final myControllerNr3 = TextEditingController();
-  final myControllerNr4 = TextEditingController();
-  final myControllerNr5 = TextEditingController();
-  final myControllerNr6 = TextEditingController();
-  final myControllerNr7 = TextEditingController();
-  final myControllerNr8 = TextEditingController();
-  final myControllerNr9 = TextEditingController();
-  final myControllerNr10 = TextEditingController();
+  final myControllerNr1 = TextEditingController(text: "0");
+  final myControllerNr2 = TextEditingController(text: "0");
+  final myControllerNr3 = TextEditingController(text: "0");
+  final myControllerNr4 = TextEditingController(text: "0");
+  final myControllerNr5 = TextEditingController(text: "0");
+  final myControllerNr6 = TextEditingController(text: "0");
+  final myControllerNr7 = TextEditingController(text: "0");
+  final myControllerNr8 = TextEditingController(text: "0");
+  final myControllerNr9 = TextEditingController(text: "0");
+  final myControllerNr10 = TextEditingController(text: "0");
   final myControllerNr11 = TextEditingController();
   final myControllerNr12 = TextEditingController();
   final myControllerNr13 = TextEditingController();
@@ -504,6 +504,27 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
 
   Future<void> _inserirPraga(PragaDTO praga) async {
     PragaDAO dao = PragaDAO();
+
+    List<int?> pontosAmostragem = [
+      praga.ponto_amostragem_1,
+      praga.ponto_amostragem_2,
+      praga.ponto_amostragem_3,
+      praga.ponto_amostragem_4,
+      praga.ponto_amostragem_5,
+      praga.ponto_amostragem_6,
+      praga.ponto_amostragem_7,
+      praga.ponto_amostragem_8,
+      praga.ponto_amostragem_9,
+      praga.ponto_amostragem_10
+    ];
+
+    pontosAmostragem = pontosAmostragem.where((p) => p != null).toList();
+    int soma = pontosAmostragem.fold(0, (sum, p) => sum + (p ?? 0));
+    double media =
+        pontosAmostragem.isNotEmpty ? soma / pontosAmostragem.length : 0;
+
+    praga.total = soma;
+    praga.media = media;
 
     await dao.insert(praga);
 

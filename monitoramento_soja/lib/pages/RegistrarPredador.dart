@@ -16,16 +16,16 @@ class _RegistrarPredadorState extends State<RegistrarPredador> {
 
   late PredadorDTO predadorDTO;
 
-  final myControllerNr1 = TextEditingController();
-  final myControllerNr2 = TextEditingController();
-  final myControllerNr3 = TextEditingController();
-  final myControllerNr4 = TextEditingController();
-  final myControllerNr5 = TextEditingController();
-  final myControllerNr6 = TextEditingController();
-  final myControllerNr7 = TextEditingController();
-  final myControllerNr8 = TextEditingController();
-  final myControllerNr9 = TextEditingController();
-  final myControllerNr10 = TextEditingController();
+  final myControllerNr1 = TextEditingController(text: "0");
+  final myControllerNr2 = TextEditingController(text: "0");
+  final myControllerNr3 = TextEditingController(text: "0");
+  final myControllerNr4 = TextEditingController(text: "0");
+  final myControllerNr5 = TextEditingController(text: "0");
+  final myControllerNr6 = TextEditingController(text: "0");
+  final myControllerNr7 = TextEditingController(text: "0");
+  final myControllerNr8 = TextEditingController(text: "0");
+  final myControllerNr9 = TextEditingController(text: "0");
+  final myControllerNr10 = TextEditingController(text: "0");
   final myControllerNr11 = TextEditingController();
 
   @override
@@ -456,8 +456,27 @@ class _RegistrarPredadorState extends State<RegistrarPredador> {
 
   Future<void> _inserirPredador(PredadorDTO predador) async {
     PredadorDAO dao = PredadorDAO();
-    predador.media = 5;
-    predador.total = 50;
+
+    List<int?> pontosAmostragem = [
+      predador.ponto_amostragem_1,
+      predador.ponto_amostragem_2,
+      predador.ponto_amostragem_3,
+      predador.ponto_amostragem_4,
+      predador.ponto_amostragem_5,
+      predador.ponto_amostragem_6,
+      predador.ponto_amostragem_7,
+      predador.ponto_amostragem_8,
+      predador.ponto_amostragem_9,
+      predador.ponto_amostragem_10
+    ];
+
+    pontosAmostragem = pontosAmostragem.where((p) => p != null).toList();
+    int soma = pontosAmostragem.fold(0, (sum, p) => sum + (p ?? 0));
+    double media =
+        pontosAmostragem.isNotEmpty ? soma / pontosAmostragem.length : 0;
+
+    predador.total = soma;
+    predador.media = media;
 
     await dao.insert(predador);
 

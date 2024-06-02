@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/doenca_dto.dart';
 import 'package:monitoramento_soja/dtos/praga_dto.dart';
