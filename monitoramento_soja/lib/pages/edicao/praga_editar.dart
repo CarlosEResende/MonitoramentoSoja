@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/praga_dto.dart';
-import 'package:monitoramento_soja/dtos/soja_dto.dart';
 import 'package:monitoramento_soja/repository/praga_dao.dart';
 
-class RegistrarPraga extends StatefulWidget {
-  final SojaDTO soja;
-  const RegistrarPraga({super.key, required this.soja});
+class EditarPraga extends StatefulWidget {
+  final PragaDTO praga;
+  const EditarPraga({super.key, required this.praga});
 
   @override
-  State<RegistrarPraga> createState() => _RegistrarPragaState();
+  State<EditarPraga> createState() => _EditarPragaState();
 }
 
-class _RegistrarPragaState extends State<RegistrarPraga> {
+class _EditarPragaState extends State<EditarPraga> {
   // final _pragaKey = GlobalKey<FormState>();
 
   late PragaDTO pragaDTO;
@@ -29,6 +28,26 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
   final myControllerNr11 = TextEditingController();
   final myControllerNr12 = TextEditingController();
   final myControllerNr13 = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    pragaDTO = widget.praga;
+
+    myControllerNr1.text = pragaDTO.ponto_amostragem_1.toString();
+    myControllerNr2.text = pragaDTO.ponto_amostragem_2.toString();
+    myControllerNr3.text = pragaDTO.ponto_amostragem_3.toString();
+    myControllerNr4.text = pragaDTO.ponto_amostragem_4.toString();
+    myControllerNr5.text = pragaDTO.ponto_amostragem_5.toString();
+    myControllerNr6.text = pragaDTO.ponto_amostragem_6.toString();
+    myControllerNr7.text = pragaDTO.ponto_amostragem_7.toString();
+    myControllerNr8.text = pragaDTO.ponto_amostragem_8.toString();
+    myControllerNr9.text = pragaDTO.ponto_amostragem_9.toString();
+    myControllerNr10.text = pragaDTO.ponto_amostragem_10.toString();
+    myControllerNr11.text = pragaDTO.tipo_praga;
+    myControllerNr12.text = pragaDTO.tamanho;
+    myControllerNr13.text = pragaDTO.nivel_controle;
+  }
 
   @override
   void dispose() {
@@ -50,9 +69,6 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
 
   @override
   Widget build(BuildContext context) {
-    PragaDTO pragaDTO = PragaDTO();
-    pragaDTO.id_soja = widget.soja.id;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -456,7 +472,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
         padding: const EdgeInsets.only(bottom: 30),
         child: TextButton(
           onPressed: () {
-            _inserirPraga(pragaDTO);
+            _editarPraga(pragaDTO);
           },
           style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -502,7 +518,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
     );
   }
 
-  Future<void> _inserirPraga(PragaDTO praga) async {
+  Future<void> _editarPraga(PragaDTO praga) async {
     PragaDAO dao = PragaDAO();
 
     List<int?> pontosAmostragem = [
@@ -526,10 +542,10 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
     praga.total = soma;
     praga.media = media;
 
-    await dao.insert(praga);
+    await dao.update(praga);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Praga cadastrada com sucesso!")),
+      const SnackBar(content: Text("Praga atualizada com sucesso!")),
     );
 
     Navigator.pop(context);

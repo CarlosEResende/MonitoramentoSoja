@@ -54,8 +54,8 @@ class _PredListagemState extends State<PredListagem> {
           } else if (snapshot.hasData) {
             List<PredadorDTO> preds = snapshot.data!;
             List<PredadorLista> listaItensLista = preds.map((pred) {
-              return PredadorLista(pred.media.toString(), pred.total.toString(),
-                  pred.id.toString());
+              return PredadorLista(pred.tipo_predador, pred.total.toString(),
+                  pred.media.toString(), pred.id.toString());
             }).toList();
 
             return ListView.builder(

@@ -54,8 +54,8 @@ class _PragaListagemState extends State<PragaListagem> {
           } else if (snapshot.hasData) {
             List<PragaDTO> pragas = snapshot.data!;
             List<PragaLista> listaItensLista = pragas.map((praga) {
-              return PragaLista(praga.media.toString(), praga.total.toString(),
-                  praga.id.toString());
+              return PragaLista(praga.tipo_praga, praga.total.toString(),
+                  praga.media.toString(), praga.tamanho, praga.id.toString());
             }).toList();
 
             return ListView.builder(

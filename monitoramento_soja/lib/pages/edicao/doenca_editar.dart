@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:monitoramento_soja/dtos/praga_dto.dart';
-import 'package:monitoramento_soja/dtos/soja_dto.dart';
-import 'package:monitoramento_soja/repository/praga_dao.dart';
+import 'package:monitoramento_soja/dtos/doenca_dto.dart';
+import 'package:monitoramento_soja/repository/doenca_dao.dart';
 
-class RegistrarPraga extends StatefulWidget {
-  final SojaDTO soja;
-  const RegistrarPraga({super.key, required this.soja});
+class EditarDoenca extends StatefulWidget {
+  final DoencaDTO doenca;
+  const EditarDoenca({super.key, required this.doenca});
 
   @override
-  State<RegistrarPraga> createState() => _RegistrarPragaState();
+  State<EditarDoenca> createState() => _EditarDoencaState();
 }
 
-class _RegistrarPragaState extends State<RegistrarPraga> {
-  // final _pragaKey = GlobalKey<FormState>();
+class _EditarDoencaState extends State<EditarDoenca> {
+  // final _doencadKey = GlobalKey<FormState>();
 
-  late PragaDTO pragaDTO;
+  late DoencaDTO doencaDTO;
 
   final myControllerNr1 = TextEditingController(text: "0");
   final myControllerNr2 = TextEditingController(text: "0");
@@ -27,8 +26,24 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
   final myControllerNr9 = TextEditingController(text: "0");
   final myControllerNr10 = TextEditingController(text: "0");
   final myControllerNr11 = TextEditingController();
-  final myControllerNr12 = TextEditingController();
-  final myControllerNr13 = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    doencaDTO = widget.doenca;
+
+    myControllerNr1.text = doencaDTO.ponto_amostragem_1.toString();
+    myControllerNr2.text = doencaDTO.ponto_amostragem_2.toString();
+    myControllerNr3.text = doencaDTO.ponto_amostragem_3.toString();
+    myControllerNr4.text = doencaDTO.ponto_amostragem_4.toString();
+    myControllerNr5.text = doencaDTO.ponto_amostragem_5.toString();
+    myControllerNr6.text = doencaDTO.ponto_amostragem_6.toString();
+    myControllerNr7.text = doencaDTO.ponto_amostragem_7.toString();
+    myControllerNr8.text = doencaDTO.ponto_amostragem_8.toString();
+    myControllerNr9.text = doencaDTO.ponto_amostragem_9.toString();
+    myControllerNr10.text = doencaDTO.ponto_amostragem_10.toString();
+    myControllerNr11.text = doencaDTO.tipo_doenca;
+  }
 
   @override
   void dispose() {
@@ -43,16 +58,11 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
     myControllerNr9.dispose();
     myControllerNr10.dispose();
     myControllerNr11.dispose();
-    myControllerNr12.dispose();
-    myControllerNr13.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    PragaDTO pragaDTO = PragaDTO();
-    pragaDTO.id_soja = widget.soja.id;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -93,7 +103,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFormField(
-                          onChanged: (value) => pragaDTO.tipo_praga = value,
+                          onChanged: (value) => doencaDTO.tipo_doenca = value,
                           controller: myControllerNr11,
                           keyboardType: TextInputType.text,
                           validator: (value) {
@@ -103,53 +113,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            labelText: "Tipo Praga",
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: const BorderSide(
-                                  color: Colors.black, width: 1.0),
-                            ),
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(20, 20, 10, 20),
-                          ),
-                        ),
-                        TextFormField(
-                          onChanged: (value) => pragaDTO.tamanho = value,
-                          controller: myControllerNr12,
-                          keyboardType: TextInputType.text,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Por favor, preencha este campo';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            labelText: "Tamanho",
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: const BorderSide(
-                                  color: Colors.black, width: 1.0),
-                            ),
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(20, 20, 10, 20),
-                          ),
-                        ),
-                        TextFormField(
-                          onChanged: (value) => pragaDTO.nivel_controle = value,
-                          controller: myControllerNr13,
-                          keyboardType: TextInputType.text,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Por favor, preencha este campo';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            labelText: "Nível de controle",
+                            labelText: "Tipo Doença",
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
@@ -201,7 +165,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
 
-                                      pragaDTO.ponto_amostragem_1 = intValue;
+                                      doencaDTO.ponto_amostragem_1 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -222,7 +186,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_2 = intValue;
+                                      doencaDTO.ponto_amostragem_2 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -243,7 +207,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_3 = intValue;
+                                      doencaDTO.ponto_amostragem_3 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -264,7 +228,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_4 = intValue;
+                                      doencaDTO.ponto_amostragem_4 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -285,7 +249,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_5 = intValue;
+                                      doencaDTO.ponto_amostragem_5 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -319,7 +283,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_6 = intValue;
+                                      doencaDTO.ponto_amostragem_6 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -340,7 +304,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_7 = intValue;
+                                      doencaDTO.ponto_amostragem_7 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -361,7 +325,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_8 = intValue;
+                                      doencaDTO.ponto_amostragem_8 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -382,7 +346,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_9 = intValue;
+                                      doencaDTO.ponto_amostragem_9 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -403,7 +367,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_10 = intValue;
+                                      doencaDTO.ponto_amostragem_10 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -442,7 +406,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                   ),
                   const SizedBox(width: 0),
                   Image.asset(
-                    'lib/img/faixaPredador.png',
+                    'lib/img/faixaDoenca.png',
                     height: 120,
                     width: 230,
                   ),
@@ -453,10 +417,10 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
         ),
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 30),
+        padding: const EdgeInsets.only(bottom: 45),
         child: TextButton(
           onPressed: () {
-            _inserirPraga(pragaDTO);
+            _editarDoenca(doencaDTO);
           },
           style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -502,20 +466,20 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
     );
   }
 
-  Future<void> _inserirPraga(PragaDTO praga) async {
-    PragaDAO dao = PragaDAO();
+  Future<void> _editarDoenca(DoencaDTO doenca) async {
+    DoencaDAO dao = DoencaDAO();
 
     List<int?> pontosAmostragem = [
-      praga.ponto_amostragem_1,
-      praga.ponto_amostragem_2,
-      praga.ponto_amostragem_3,
-      praga.ponto_amostragem_4,
-      praga.ponto_amostragem_5,
-      praga.ponto_amostragem_6,
-      praga.ponto_amostragem_7,
-      praga.ponto_amostragem_8,
-      praga.ponto_amostragem_9,
-      praga.ponto_amostragem_10
+      doenca.ponto_amostragem_1,
+      doenca.ponto_amostragem_2,
+      doenca.ponto_amostragem_3,
+      doenca.ponto_amostragem_4,
+      doenca.ponto_amostragem_5,
+      doenca.ponto_amostragem_6,
+      doenca.ponto_amostragem_7,
+      doenca.ponto_amostragem_8,
+      doenca.ponto_amostragem_9,
+      doenca.ponto_amostragem_10
     ];
 
     pontosAmostragem = pontosAmostragem.where((p) => p != null).toList();
@@ -523,13 +487,13 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
     double media =
         pontosAmostragem.isNotEmpty ? soma / pontosAmostragem.length : 0;
 
-    praga.total = soma;
-    praga.media = media;
+    doenca.total = soma;
+    doenca.media = media;
 
-    await dao.insert(praga);
+    await dao.update(doenca);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Praga cadastrada com sucesso!")),
+      const SnackBar(content: Text("Doença atualiza com sucesso!")),
     );
 
     Navigator.pop(context);

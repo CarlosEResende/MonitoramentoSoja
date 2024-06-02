@@ -483,9 +483,6 @@ class _RegistrarPredadorState extends State<RegistrarPredador> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text("Predador cadastrado com sucesso!")),
     );
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(predador.toString())),
-    );
 
     Navigator.pop(context);
   }

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/soja_dto.dart';
-import 'package:monitoramento_soja/dtos/usuario_dto.dart';
 import 'package:monitoramento_soja/repository/soja_dao.dart';
 
-class RegistrarSoja extends StatefulWidget {
-  final UsuarioDTO usuario;
-  const RegistrarSoja({super.key, required this.usuario});
+class EditarSoja extends StatefulWidget {
+  final SojaDTO soja;
+
+  const EditarSoja({super.key, required this.soja});
 
   @override
-  State<RegistrarSoja> createState() => _RegistrarSojaState();
+  State<EditarSoja> createState() => _EditarSojaState();
 }
 
-class _RegistrarSojaState extends State<RegistrarSoja> {
+class _EditarSojaState extends State<EditarSoja> {
   final _sojaKey = GlobalKey<FormState>();
 
   late SojaDTO sojaDTO;
@@ -23,6 +23,20 @@ class _RegistrarSojaState extends State<RegistrarSoja> {
   final myControllerNr5 = TextEditingController();
   final myControllerNr6 = TextEditingController();
   final myControllerNr7 = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    sojaDTO = widget.soja;
+
+    myControllerNr1.text = sojaDTO.data;
+    myControllerNr2.text = sojaDTO.data_semeadura;
+    myControllerNr3.text = sojaDTO.monitor;
+    myControllerNr4.text = sojaDTO.lote_talhao;
+    myControllerNr5.text = sojaDTO.tipo_soja;
+    myControllerNr6.text = sojaDTO.municipio;
+    myControllerNr7.text = sojaDTO.estagio_soja;
+  }
 
   @override
   void dispose() {
@@ -38,9 +52,6 @@ class _RegistrarSojaState extends State<RegistrarSoja> {
 
   @override
   Widget build(BuildContext context) {
-    sojaDTO = SojaDTO();
-    sojaDTO.id_usuario = widget.usuario.id;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -296,51 +307,98 @@ class _RegistrarSojaState extends State<RegistrarSoja> {
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20),
-        child: TextButton(
-          onPressed: () {
-            if (_sojaKey.currentState!.validate()) {
-              _inserirSoja(sojaDTO);
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                    content: Text("Por favor, preencha todos os campos!")),
-              );
-            }
-          },
-          style: TextButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-              side: const BorderSide(
-                color: Color(0xFF19480D),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              onPressed: () {
+                if (_sojaKey.currentState!.validate()) {
+                  _editarSoja(sojaDTO);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text("Por favor, preencha todos os campos!")),
+                  );
+                }
+              },
+              style: TextButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: const BorderSide(
+                    color: Color(0xFF19480D),
+                  ),
+                ),
               ),
-            ),
-          ),
-          child: const SizedBox(
-            width: 120,
-            height: 40,
-            child: Center(
-              child: Text(
-                'Confirmar',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+              child: const SizedBox(
+                width: 120,
+                height: 40,
+                child: Center(
+                  child: Text(
+                    'Confirmar',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+            const SizedBox(width: 20),
+            TextButton(
+              onPressed: () {
+                _excluirSoja(sojaDTO);
+              },
+              style: TextButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: const BorderSide(
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+              child: const SizedBox(
+                width: 120,
+                height: 40,
+                child: Center(
+                  child: Text(
+                    'Excluir',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
-  Future<void> _inserirSoja(SojaDTO soja) async {
+  Future<void> _editarSoja(SojaDTO soja) async {
     SojaDAO dao = SojaDAO();
 
-    await dao.insert(soja);
+    await dao.update(soja);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Soja cadastrada com sucesso!")),
+      const SnackBar(content: Text("Soja atualizada com sucesso!")),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(soja.toString())),
+    );
+
+    Navigator.pop(context);
+  }
+
+  Future<void> _excluirSoja(SojaDTO soja) async {
+    SojaDAO dao = SojaDAO();
+
+    await dao.delete(soja.id.toString());
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Soja excluída com sucesso!")),
     );
 
     Navigator.pop(context);

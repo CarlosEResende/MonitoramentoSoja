@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:monitoramento_soja/dtos/praga_dto.dart';
-import 'package:monitoramento_soja/dtos/soja_dto.dart';
-import 'package:monitoramento_soja/repository/praga_dao.dart';
+import 'package:monitoramento_soja/dtos/predador_dto.dart';
+import 'package:monitoramento_soja/repository/predador_dao.dart';
 
-class RegistrarPraga extends StatefulWidget {
-  final SojaDTO soja;
-  const RegistrarPraga({super.key, required this.soja});
+class EditarPredador extends StatefulWidget {
+  final PredadorDTO predador;
+  const EditarPredador({super.key, required this.predador});
 
   @override
-  State<RegistrarPraga> createState() => _RegistrarPragaState();
+  State<EditarPredador> createState() => _EditarPredadorState();
 }
 
-class _RegistrarPragaState extends State<RegistrarPraga> {
-  // final _pragaKey = GlobalKey<FormState>();
+class _EditarPredadorState extends State<EditarPredador> {
+  // final _predKey = GlobalKey<FormState>();
 
-  late PragaDTO pragaDTO;
+  late PredadorDTO predadorDTO;
 
   final myControllerNr1 = TextEditingController(text: "0");
   final myControllerNr2 = TextEditingController(text: "0");
@@ -27,8 +26,24 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
   final myControllerNr9 = TextEditingController(text: "0");
   final myControllerNr10 = TextEditingController(text: "0");
   final myControllerNr11 = TextEditingController();
-  final myControllerNr12 = TextEditingController();
-  final myControllerNr13 = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    predadorDTO = widget.predador;
+
+    myControllerNr1.text = predadorDTO.ponto_amostragem_1.toString();
+    myControllerNr2.text = predadorDTO.ponto_amostragem_2.toString();
+    myControllerNr3.text = predadorDTO.ponto_amostragem_3.toString();
+    myControllerNr4.text = predadorDTO.ponto_amostragem_4.toString();
+    myControllerNr5.text = predadorDTO.ponto_amostragem_5.toString();
+    myControllerNr6.text = predadorDTO.ponto_amostragem_6.toString();
+    myControllerNr7.text = predadorDTO.ponto_amostragem_7.toString();
+    myControllerNr8.text = predadorDTO.ponto_amostragem_8.toString();
+    myControllerNr9.text = predadorDTO.ponto_amostragem_9.toString();
+    myControllerNr10.text = predadorDTO.ponto_amostragem_10.toString();
+    myControllerNr11.text = predadorDTO.tipo_predador;
+  }
 
   @override
   void dispose() {
@@ -43,16 +58,11 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
     myControllerNr9.dispose();
     myControllerNr10.dispose();
     myControllerNr11.dispose();
-    myControllerNr12.dispose();
-    myControllerNr13.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    PragaDTO pragaDTO = PragaDTO();
-    pragaDTO.id_soja = widget.soja.id;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -93,7 +103,8 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFormField(
-                          onChanged: (value) => pragaDTO.tipo_praga = value,
+                          onChanged: (value) =>
+                              predadorDTO.tipo_predador = value,
                           controller: myControllerNr11,
                           keyboardType: TextInputType.text,
                           validator: (value) {
@@ -103,53 +114,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            labelText: "Tipo Praga",
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: const BorderSide(
-                                  color: Colors.black, width: 1.0),
-                            ),
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(20, 20, 10, 20),
-                          ),
-                        ),
-                        TextFormField(
-                          onChanged: (value) => pragaDTO.tamanho = value,
-                          controller: myControllerNr12,
-                          keyboardType: TextInputType.text,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Por favor, preencha este campo';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            labelText: "Tamanho",
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: const BorderSide(
-                                  color: Colors.black, width: 1.0),
-                            ),
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(20, 20, 10, 20),
-                          ),
-                        ),
-                        TextFormField(
-                          onChanged: (value) => pragaDTO.nivel_controle = value,
-                          controller: myControllerNr13,
-                          keyboardType: TextInputType.text,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Por favor, preencha este campo';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            labelText: "Nível de controle",
+                            labelText: "Tipo Predador",
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
@@ -201,7 +166,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
 
-                                      pragaDTO.ponto_amostragem_1 = intValue;
+                                      predadorDTO.ponto_amostragem_1 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -222,7 +187,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_2 = intValue;
+                                      predadorDTO.ponto_amostragem_2 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -243,7 +208,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_3 = intValue;
+                                      predadorDTO.ponto_amostragem_3 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -264,7 +229,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_4 = intValue;
+                                      predadorDTO.ponto_amostragem_4 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -285,7 +250,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_5 = intValue;
+                                      predadorDTO.ponto_amostragem_5 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -319,7 +284,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_6 = intValue;
+                                      predadorDTO.ponto_amostragem_6 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -340,7 +305,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_7 = intValue;
+                                      predadorDTO.ponto_amostragem_7 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -361,7 +326,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_8 = intValue;
+                                      predadorDTO.ponto_amostragem_8 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -382,7 +347,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_9 = intValue;
+                                      predadorDTO.ponto_amostragem_9 = intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -403,7 +368,8 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
                                       int? intValue = int.tryParse(value);
-                                      pragaDTO.ponto_amostragem_10 = intValue;
+                                      predadorDTO.ponto_amostragem_10 =
+                                          intValue;
                                     },
                                     decoration: const InputDecoration(
                                       border: InputBorder.none,
@@ -456,7 +422,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
         padding: const EdgeInsets.only(bottom: 30),
         child: TextButton(
           onPressed: () {
-            _inserirPraga(pragaDTO);
+            _inserirPredador(predadorDTO);
           },
           style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -471,7 +437,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
             height: 40,
             child: Center(
               child: Text(
-                'Salvar',
+                'Confirmar',
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -502,20 +468,20 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
     );
   }
 
-  Future<void> _inserirPraga(PragaDTO praga) async {
-    PragaDAO dao = PragaDAO();
+  Future<void> _inserirPredador(PredadorDTO predador) async {
+    PredadorDAO dao = PredadorDAO();
 
     List<int?> pontosAmostragem = [
-      praga.ponto_amostragem_1,
-      praga.ponto_amostragem_2,
-      praga.ponto_amostragem_3,
-      praga.ponto_amostragem_4,
-      praga.ponto_amostragem_5,
-      praga.ponto_amostragem_6,
-      praga.ponto_amostragem_7,
-      praga.ponto_amostragem_8,
-      praga.ponto_amostragem_9,
-      praga.ponto_amostragem_10
+      predador.ponto_amostragem_1,
+      predador.ponto_amostragem_2,
+      predador.ponto_amostragem_3,
+      predador.ponto_amostragem_4,
+      predador.ponto_amostragem_5,
+      predador.ponto_amostragem_6,
+      predador.ponto_amostragem_7,
+      predador.ponto_amostragem_8,
+      predador.ponto_amostragem_9,
+      predador.ponto_amostragem_10
     ];
 
     pontosAmostragem = pontosAmostragem.where((p) => p != null).toList();
@@ -523,13 +489,13 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
     double media =
         pontosAmostragem.isNotEmpty ? soma / pontosAmostragem.length : 0;
 
-    praga.total = soma;
-    praga.media = media;
+    predador.total = soma;
+    predador.media = media;
 
-    await dao.insert(praga);
+    await dao.update(predador);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Praga cadastrada com sucesso!")),
+      const SnackBar(content: Text("Predador atualizado com sucesso!")),
     );
 
     Navigator.pop(context);

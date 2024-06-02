@@ -54,8 +54,8 @@ class _DoencaListagemState extends State<DoencaListagem> {
           } else if (snapshot.hasData) {
             List<DoencaDTO> doencas = snapshot.data!;
             List<DoencaLista> listaItensLista = doencas.map((doenca) {
-              return DoencaLista(doenca.media.toString(),
-                  doenca.total.toString(), doenca.id.toString());
+              return DoencaLista(doenca.tipo_doenca, doenca.total.toString(),
+                  doenca.media.toString(), doenca.id.toString());
             }).toList();
 
             return ListView.builder(

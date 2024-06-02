@@ -481,9 +481,6 @@ class _RegistrarDoencaState extends State<RegistrarDoenca> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text("Doença cadastrada com sucesso!")),
     );
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(doenca.toString())),
-    );
 
     Navigator.pop(context);
   }

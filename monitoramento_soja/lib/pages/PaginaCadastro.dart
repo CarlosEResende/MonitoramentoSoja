@@ -306,10 +306,6 @@ class _CadastrarUserState extends State<CadastrarUser> {
       Future<UsuarioDTO?> lastUser = dao.obterUltimo();
       UsuarioDTO? user = await lastUser;
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(user.toString())),
-      );
-
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
