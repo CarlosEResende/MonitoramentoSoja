@@ -115,6 +115,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                 const EdgeInsets.fromLTRB(20, 20, 10, 20),
                           ),
                         ),
+                        SizedBox(height: 20),
                         TextFormField(
                           onChanged: (value) => pragaDTO.tamanho = value,
                           controller: myControllerNr12,
@@ -138,6 +139,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                 const EdgeInsets.fromLTRB(20, 20, 10, 20),
                           ),
                         ),
+                        SizedBox(height: 20),
                         TextFormField(
                           onChanged: (value) => pragaDTO.nivel_controle = value,
                           controller: myControllerNr13,
@@ -161,6 +163,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                                 const EdgeInsets.fromLTRB(20, 20, 10, 20),
                           ),
                         ),
+                        SizedBox(height: 20),
                         Container(
                           alignment: Alignment.center,
                           child: const Text(
@@ -442,7 +445,7 @@ class _RegistrarPragaState extends State<RegistrarPraga> {
                   ),
                   const SizedBox(width: 0),
                   Image.asset(
-                    'lib/img/faixaPredador.png',
+                    'lib/img/faixaPraga.png',
                     height: 120,
                     width: 230,
                   ),

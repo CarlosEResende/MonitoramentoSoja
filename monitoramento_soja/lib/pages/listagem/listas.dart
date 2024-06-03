@@ -29,7 +29,7 @@ class SojaLista extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        tileColor: const Color(0xFF6EC359),
+        tileColor: Color.fromARGB(255, 162, 212, 149),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -99,7 +99,7 @@ class DoencaLista extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        tileColor: const Color(0xFF6EC359),
+        tileColor: Color.fromARGB(255, 162, 212, 149),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -154,7 +154,7 @@ class PragaLista extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        tileColor: const Color(0xFF6EC359),
+        tileColor: Color.fromARGB(255, 162, 212, 149),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -213,7 +213,7 @@ class PredadorLista extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        tileColor: const Color(0xFF6EC359),
+        tileColor: Color.fromARGB(255, 162, 212, 149),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

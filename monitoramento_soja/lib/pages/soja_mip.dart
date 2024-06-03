@@ -39,70 +39,101 @@ class SojaMip extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
+                Stack(
+                  children: [
+                    Center(
+                      child: Image.asset(
+                        'lib/img/titulo.png',
+                        width: 350,
+                        height: 120,
+                      ),
+                    ),
+                    Positioned(
+                      top: 25,
+                      left: 10,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            'lib/img/back.png',
+                            height: 40,
+                            width: 35,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 16.0, horizontal: 16.0),
-                  child: Column(
+                  child: Row(
                     children: [
-                      const Row(
-                        children: [
-                          SizedBox(width: 16),
-                          Text(
-                            'Predadores',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ],
+                      const SizedBox(width: 16),
+                      Image.asset(
+                        'lib/img/iconPredador.png',
+                        width: 140,
+                        height: 140,
                       ),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      const SizedBox(width: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RegistrarPredador(
-                                    soja: soja,
+                          SizedBox(
+                            width: 140,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => RegistrarPredador(
+                                      soja: soja,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              side: const BorderSide(color: Colors.green),
-                            ),
-                            child: const Row(
-                              children: [
-                                Icon(Icons.add, color: Colors.green),
-                                SizedBox(width: 8),
-                                Text('Registrar',
-                                    style: TextStyle(color: Colors.green)),
-                              ],
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                side: const BorderSide(color: Colors.green),
+                              ),
+                              child: const Row(
+                                children: [
+                                  Icon(Icons.add, color: Colors.green),
+                                  SizedBox(width: 8),
+                                  Text('Registrar',
+                                      style: TextStyle(color: Colors.green)),
+                                ],
+                              ),
                             ),
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PredListagem(
-                                    soja: soja,
+                          SizedBox(
+                            width: 140,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PredListagem(
+                                      soja: soja,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              side: const BorderSide(color: Colors.green),
-                            ),
-                            child: const Row(
-                              children: [
-                                Icon(Icons.list, color: Colors.green),
-                                SizedBox(width: 8),
-                                Text('Lista',
-                                    style: TextStyle(color: Colors.green)),
-                              ],
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                side: const BorderSide(color: Colors.green),
+                              ),
+                              child: const Row(
+                                children: [
+                                  Icon(Icons.list, color: Colors.green),
+                                  SizedBox(width: 8),
+                                  Text('Lista',
+                                      style: TextStyle(color: Colors.green)),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -110,70 +141,83 @@ class SojaMip extends StatelessWidget {
                     ],
                   ),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'lib/img/linhaVerde.png',
+                      width: 360,
+                      height: 40,
+                    ),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 16.0, horizontal: 16.0),
-                  child: Column(
+                  child: Row(
                     children: [
-                      const Row(
-                        children: [
-                          SizedBox(width: 16),
-                          Text(
-                            'Doenças',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ],
+                      const SizedBox(width: 16),
+                      Image.asset(
+                        'lib/img/iconDoenca.png',
+                        width: 140,
+                        height: 140,
                       ),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      const SizedBox(width: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RegistrarDoenca(
-                                    soja: soja,
+                          SizedBox(
+                            width: 140,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => RegistrarDoenca(
+                                      soja: soja,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              side: const BorderSide(color: Colors.green),
-                            ),
-                            child: const Row(
-                              children: [
-                                Icon(Icons.add, color: Colors.green),
-                                SizedBox(width: 8),
-                                Text('Registrar',
-                                    style: TextStyle(color: Colors.green)),
-                              ],
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                side: const BorderSide(color: Colors.green),
+                              ),
+                              child: const Row(
+                                children: [
+                                  Icon(Icons.add, color: Colors.green),
+                                  SizedBox(width: 8),
+                                  Text('Registrar',
+                                      style: TextStyle(color: Colors.green)),
+                                ],
+                              ),
                             ),
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => DoencaListagem(
-                                    soja: soja,
+                          SizedBox(
+                            width: 140,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DoencaListagem(
+                                      soja: soja,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              side: const BorderSide(color: Colors.green),
-                            ),
-                            child: const Row(
-                              children: [
-                                Icon(Icons.list, color: Colors.green),
-                                SizedBox(width: 8),
-                                Text('Lista',
-                                    style: TextStyle(color: Colors.green)),
-                              ],
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                side: const BorderSide(color: Colors.green),
+                              ),
+                              child: const Row(
+                                children: [
+                                  Icon(Icons.list, color: Colors.green),
+                                  SizedBox(width: 8),
+                                  Text('Lista',
+                                      style: TextStyle(color: Colors.green)),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -181,76 +225,106 @@ class SojaMip extends StatelessWidget {
                     ],
                   ),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'lib/img/linhaVerde.png',
+                      width: 360,
+                      height: 40,
+                    ),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 16.0, horizontal: 16.0),
                   child: Column(
                     children: [
-                      const Row(
-                        children: [
-                          SizedBox(width: 16),
-                          Text(
-                            'Pragas',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RegistrarPraga(
-                                    soja: soja,
-                                  ),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              side: const BorderSide(color: Colors.green),
-                            ),
-                            child: const Row(
-                              children: [
-                                Icon(Icons.add, color: Colors.green),
-                                SizedBox(width: 8),
-                                Text('Registrar',
-                                    style: TextStyle(color: Colors.green)),
-                              ],
-                            ),
+                          const SizedBox(width: 16),
+                          Image.asset(
+                            'lib/img/iconPraga.png',
+                            width: 140,
+                            height: 140,
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PragaListagem(
-                                    soja: soja,
+                          const SizedBox(width: 16),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 140,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => RegistrarPraga(
+                                          soja: soja,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    side: const BorderSide(color: Colors.green),
+                                  ),
+                                  child: const Row(
+                                    children: [
+                                      Icon(Icons.add, color: Colors.green),
+                                      SizedBox(width: 8),
+                                      Text('Registrar',
+                                          style:
+                                              TextStyle(color: Colors.green)),
+                                    ],
                                   ),
                                 ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              side: const BorderSide(color: Colors.green),
-                            ),
-                            child: const Row(
-                              children: [
-                                Icon(Icons.list, color: Colors.green),
-                                SizedBox(width: 8),
-                                Text('Lista',
-                                    style: TextStyle(color: Colors.green)),
-                              ],
-                            ),
+                              ),
+                              const SizedBox(height: 8),
+                              SizedBox(
+                                width: 140,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PragaListagem(
+                                          soja: soja,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    side: const BorderSide(color: Colors.green),
+                                  ),
+                                  child: const Row(
+                                    children: [
+                                      Icon(Icons.list, color: Colors.green),
+                                      SizedBox(width: 8),
+                                      Text('Lista',
+                                          style:
+                                              TextStyle(color: Colors.green)),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ],
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'lib/img/linhaVerde.png',
+                      width: 360,
+                      height: 40,
+                    ),
+                  ],
                 ),
               ],
             ),

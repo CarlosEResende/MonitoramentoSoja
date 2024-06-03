@@ -112,6 +112,7 @@ class _RegistrarPredadorState extends State<RegistrarPredador> {
                                 const EdgeInsets.fromLTRB(20, 20, 10, 20),
                           ),
                         ),
+                        SizedBox(height: 40),
                         Container(
                           alignment: Alignment.center,
                           child: const Text(

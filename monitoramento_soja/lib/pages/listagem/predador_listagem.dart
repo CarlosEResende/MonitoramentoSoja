@@ -29,11 +29,24 @@ class _PredListagemState extends State<PredListagem> {
         toolbarHeight: 70,
         title: Row(
           children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  'lib/img/back.png',
+                  height: 40,
+                  width: 35,
+                ),
+              ),
+            ),
             const SizedBox(width: 5),
             Image.asset(
               'lib/img/mao.png',
               width: 40,
-              height: 40,
+              height: 50,
             ),
             const SizedBox(width: 15),
             const Text(
