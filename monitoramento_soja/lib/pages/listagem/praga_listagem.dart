@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/praga_dto.dart';
 import 'package:monitoramento_soja/dtos/soja_dto.dart';
-import 'package:monitoramento_soja/pages/listagem/listas.dart';
 import 'package:monitoramento_soja/repository/praga_dao.dart';
+import 'package:monitoramento_soja/pages/edicao/praga_editar.dart';
 
 class PragaListagem extends StatefulWidget {
   final SojaDTO soja;
@@ -13,7 +13,7 @@ class PragaListagem extends StatefulWidget {
 }
 
 class _PragaListagemState extends State<PragaListagem> {
-  late Future<List<PragaDTO>> _listarPragaDTO;
+  late Future<List<PragaDTO>> _listarPragaDTO = Future.value([]);
 
   @override
   void initState() {
@@ -67,8 +67,14 @@ class _PragaListagemState extends State<PragaListagem> {
           } else if (snapshot.hasData) {
             List<PragaDTO> pragas = snapshot.data!;
             List<PragaLista> listaItensLista = pragas.map((praga) {
-              return PragaLista(praga.tipo_praga, praga.total.toString(),
-                  praga.media.toString(), praga.tamanho, praga.id.toString());
+              return PragaLista(
+                praga.tipo_praga,
+                praga.total.toString(),
+                praga.media.toString(),
+                praga.tamanho,
+                praga.id.toString(),
+                atualizarLista: _atualizarLista,
+              );
             }).toList();
 
             return ListView.builder(
@@ -89,5 +95,79 @@ class _PragaListagemState extends State<PragaListagem> {
     PragaDAO dao = PragaDAO();
     List<PragaDTO> pragas = await dao.selectByIdSoja(widget.soja.id.toString());
     return pragas;
+  }
+
+  Future<void> _atualizarLista() async {
+    setState(() {
+      _listarPragaDTO = listarPragas();
+    });
+  }
+}
+
+class PragaLista extends StatelessWidget {
+  final String _titulo;
+  final String _subTitulo1;
+  final String _subTitulo2;
+  final String _subTitulo3;
+  final String _id;
+  final VoidCallback atualizarLista;
+
+  const PragaLista(
+    this._titulo,
+    this._subTitulo1,
+    this._subTitulo2,
+    this._subTitulo3,
+    this._id, {
+    super.key,
+    required this.atualizarLista,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        tileColor: const Color.fromARGB(255, 162, 212, 149),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(_titulo),
+            Row(
+              children: [
+                MaterialButton(
+                  onPressed: () async {
+                    PragaDTO? praga = await PragaDAO().selectById(_id);
+                    if (praga != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditarPraga(
+                            praga: praga,
+                          ),
+                        ),
+                      ).then((_) => atualizarLista());
+                    }
+                  },
+                  child: const Text('Editar'),
+                ),
+                MaterialButton(
+                  onPressed: () async {
+                    PragaDAO().delete(_id);
+                    atualizarLista();
+                  },
+                  child: const Text('Excluir'),
+                ),
+              ],
+            ),
+          ],
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Tamanho: $_subTitulo3'),
+            Text('Total: $_subTitulo1 Média: $_subTitulo2'),
+          ],
+        ),
+      ),
+    );
   }
 }

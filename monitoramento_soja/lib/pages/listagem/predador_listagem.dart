@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/predador_dto.dart';
 import 'package:monitoramento_soja/dtos/soja_dto.dart';
-import 'package:monitoramento_soja/pages/listagem/listas.dart';
 import 'package:monitoramento_soja/repository/predador_dao.dart';
+import 'package:monitoramento_soja/pages/edicao/predador_editar.dart';
 
 class PredListagem extends StatefulWidget {
   final SojaDTO soja;
@@ -13,7 +13,7 @@ class PredListagem extends StatefulWidget {
 }
 
 class _PredListagemState extends State<PredListagem> {
-  late Future<List<PredadorDTO>> _listaPredDTO;
+  late Future<List<PredadorDTO>> _listaPredDTO = Future.value([]);
 
   @override
   void initState() {
@@ -67,8 +67,13 @@ class _PredListagemState extends State<PredListagem> {
           } else if (snapshot.hasData) {
             List<PredadorDTO> preds = snapshot.data!;
             List<PredadorLista> listaItensLista = preds.map((pred) {
-              return PredadorLista(pred.tipo_predador, pred.total.toString(),
-                  pred.media.toString(), pred.id.toString());
+              return PredadorLista(
+                pred.tipo_predador,
+                pred.total.toString(),
+                pred.media.toString(),
+                pred.id.toString(),
+                atualizarLista: _atualizarLista,
+              );
             }).toList();
 
             return ListView.builder(
@@ -90,5 +95,66 @@ class _PredListagemState extends State<PredListagem> {
     List<PredadorDTO> preds =
         await dao.selectByIdSoja(widget.soja.id.toString());
     return preds;
+  }
+
+  Future<void> _atualizarLista() async {
+    setState(() {
+      _listaPredDTO = listarPred();
+    });
+  }
+}
+
+class PredadorLista extends StatelessWidget {
+  final String _titulo;
+  final String _subTitulo1;
+  final String _subTitulo2;
+  final String _id;
+  final VoidCallback atualizarLista;
+
+  const PredadorLista(
+      this._titulo, this._subTitulo1, this._subTitulo2, this._id,
+      {super.key, required this.atualizarLista});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        tileColor: const Color.fromARGB(255, 162, 212, 149),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(_titulo),
+            Row(
+              children: [
+                MaterialButton(
+                  onPressed: () async {
+                    PredadorDTO? predador = await PredadorDAO().selectById(_id);
+                    if (predador != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditarPredador(
+                            predador: predador,
+                          ),
+                        ),
+                      ).then((_) => atualizarLista());
+                    }
+                  },
+                  child: const Text('Editar'),
+                ),
+                MaterialButton(
+                  onPressed: () async {
+                    PredadorDAO().delete(_id);
+                    atualizarLista();
+                  },
+                  child: const Text('Excluir'),
+                ),
+              ],
+            ),
+          ],
+        ),
+        subtitle: Text('Total: $_subTitulo1 Média: $_subTitulo2'),
+      ),
+    );
   }
 }

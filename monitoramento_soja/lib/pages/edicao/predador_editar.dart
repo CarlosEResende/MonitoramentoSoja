@@ -499,6 +499,6 @@ class _EditarPredadorState extends State<EditarPredador> {
       const SnackBar(content: Text("Predador atualizado com sucesso!")),
     );
 
-    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 }

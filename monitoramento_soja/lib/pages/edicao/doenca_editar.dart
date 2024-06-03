@@ -497,6 +497,6 @@ class _EditarDoencaState extends State<EditarDoenca> {
       const SnackBar(content: Text("Doença atualiza com sucesso!")),
     );
 
-    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 }

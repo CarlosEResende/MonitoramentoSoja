@@ -551,6 +551,6 @@ class _EditarPragaState extends State<EditarPraga> {
       const SnackBar(content: Text("Praga atualizada com sucesso!")),
     );
 
-    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 }
