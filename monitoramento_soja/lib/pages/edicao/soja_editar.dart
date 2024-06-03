@@ -389,9 +389,6 @@ class _EditarSojaState extends State<EditarSoja> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text("Soja atualizada com sucesso!")),
     );
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(soja.toString())),
-    );
 
     Navigator.pop(context, true);
   }

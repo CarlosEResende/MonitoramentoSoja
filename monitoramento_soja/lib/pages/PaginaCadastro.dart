@@ -286,14 +286,6 @@ class _CadastrarUserState extends State<CadastrarUser> {
     );
   }
 
-  void _clear() {
-    usuarioDTO = UsuarioDTO(id: usuarioDTO.id);
-    myControllerNr2.clear();
-    myControllerNr1.clear();
-    myControllerNr3.clear();
-    myControllerNr4.clear();
-  }
-
   Future<void> _inserirUsuario(UsuarioDTO usuario) async {
     UsuarioDAO dao = UsuarioDAO();
 
@@ -312,8 +304,6 @@ class _CadastrarUserState extends State<CadastrarUser> {
           ),
         ),
       );
-
-      _clear();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Este email já está cadastrado!")),
