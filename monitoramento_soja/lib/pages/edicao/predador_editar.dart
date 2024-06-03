@@ -126,7 +126,7 @@ class _EditarPredadorState extends State<EditarPredador> {
                                 const EdgeInsets.fromLTRB(20, 20, 10, 20),
                           ),
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         Container(
                           alignment: Alignment.center,
                           child: const Text(
@@ -409,7 +409,7 @@ class _EditarPredadorState extends State<EditarPredador> {
                   ),
                   const SizedBox(width: 0),
                   Image.asset(
-                    'lib/img/faixaPredador.png',
+                    'lib/img/editar_predador.png',
                     height: 120,
                     width: 230,
                   ),
@@ -499,6 +499,6 @@ class _EditarPredadorState extends State<EditarPredador> {
       const SnackBar(content: Text("Predador atualizado com sucesso!")),
     );
 
-    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 }

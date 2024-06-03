@@ -125,7 +125,7 @@ class _EditarDoencaState extends State<EditarDoenca> {
                                 const EdgeInsets.fromLTRB(20, 20, 10, 20),
                           ),
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         Container(
                           alignment: Alignment.center,
                           child: const Text(
@@ -407,7 +407,7 @@ class _EditarDoencaState extends State<EditarDoenca> {
                   ),
                   const SizedBox(width: 0),
                   Image.asset(
-                    'lib/img/faixaDoenca.png',
+                    'lib/img/editar_doenca.png',
                     height: 120,
                     width: 230,
                   ),
@@ -497,6 +497,6 @@ class _EditarDoencaState extends State<EditarDoenca> {
       const SnackBar(content: Text("Doença atualiza com sucesso!")),
     );
 
-    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 }

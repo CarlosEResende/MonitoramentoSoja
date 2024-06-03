@@ -236,7 +236,7 @@ class _EditarSojaState extends State<EditarSoja> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            labelText: "Município",
+                            labelText: "Propriedade",
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
@@ -299,7 +299,7 @@ class _EditarSojaState extends State<EditarSoja> {
                   ),
                   const SizedBox(width: 0),
                   Image.asset(
-                    'lib/img/faixaSoja.png',
+                    'lib/img/editar_soja.png',
                     height: 120,
                     width: 230,
                   ),
@@ -393,7 +393,7 @@ class _EditarSojaState extends State<EditarSoja> {
       SnackBar(content: Text(soja.toString())),
     );
 
-    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 
   Future<void> _excluirSoja(SojaDTO soja) async {
@@ -405,6 +405,6 @@ class _EditarSojaState extends State<EditarSoja> {
       const SnackBar(content: Text("Soja excluída com sucesso!")),
     );
 
-    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 }

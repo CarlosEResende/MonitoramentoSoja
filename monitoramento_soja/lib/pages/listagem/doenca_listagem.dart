@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:monitoramento_soja/dtos/doenca_dto.dart';
 import 'package:monitoramento_soja/dtos/soja_dto.dart';
-import 'package:monitoramento_soja/pages/listagem/listas.dart';
 import 'package:monitoramento_soja/repository/doenca_dao.dart';
+import 'package:monitoramento_soja/pages/edicao/doenca_editar.dart';
 
 class DoencaListagem extends StatefulWidget {
   final SojaDTO soja;
@@ -13,7 +13,7 @@ class DoencaListagem extends StatefulWidget {
 }
 
 class _DoencaListagemState extends State<DoencaListagem> {
-  late Future<List<DoencaDTO>> _listaDoencaDTO;
+  late Future<List<DoencaDTO>> _listaDoencaDTO = Future.value([]);
 
   @override
   void initState() {
@@ -67,8 +67,13 @@ class _DoencaListagemState extends State<DoencaListagem> {
           } else if (snapshot.hasData) {
             List<DoencaDTO> doencas = snapshot.data!;
             List<DoencaLista> listaItensLista = doencas.map((doenca) {
-              return DoencaLista(doenca.tipo_doenca, doenca.total.toString(),
-                  doenca.media.toString(), doenca.id.toString());
+              return DoencaLista(
+                doenca.tipo_doenca,
+                doenca.total.toString(),
+                doenca.media.toString(),
+                doenca.id.toString(),
+                atualizarLista: _atualizarLista,
+              );
             }).toList();
 
             return ListView.builder(
@@ -90,5 +95,65 @@ class _DoencaListagemState extends State<DoencaListagem> {
     List<DoencaDTO> doencas =
         await dao.selectByIdSoja(widget.soja.id.toString());
     return doencas;
+  }
+
+  Future<void> _atualizarLista() async {
+    setState(() {
+      _listaDoencaDTO = listarDoencas();
+    });
+  }
+}
+
+class DoencaLista extends StatelessWidget {
+  final String _titulo;
+  final String _subTitulo1;
+  final String _subTitulo2;
+  final String _id;
+  final VoidCallback atualizarLista;
+
+  const DoencaLista(this._titulo, this._subTitulo1, this._subTitulo2, this._id,
+      {super.key, required this.atualizarLista});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        tileColor: const Color.fromARGB(255, 162, 212, 149),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(_titulo),
+            Row(
+              children: [
+                MaterialButton(
+                  onPressed: () async {
+                    DoencaDTO? doenca = await DoencaDAO().selectById(_id);
+                    if (doenca != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditarDoenca(
+                            doenca: doenca,
+                          ),
+                        ),
+                      ).then((_) => atualizarLista());
+                    }
+                  },
+                  child: const Text('Editar'),
+                ),
+                MaterialButton(
+                  onPressed: () async {
+                    DoencaDAO().delete(_id);
+                    atualizarLista();
+                  },
+                  child: const Text('Excluir'),
+                ),
+              ],
+            ),
+          ],
+        ),
+        subtitle: Text('Total: $_subTitulo1 Média: $_subTitulo2'),
+      ),
+    );
   }
 }

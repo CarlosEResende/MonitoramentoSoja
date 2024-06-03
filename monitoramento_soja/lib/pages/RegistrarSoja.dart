@@ -225,7 +225,7 @@ class _RegistrarSojaState extends State<RegistrarSoja> {
                             return null;
                           },
                           decoration: InputDecoration(
-                            labelText: "Município",
+                            labelText: "Propriedade",
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
