@@ -43,7 +43,7 @@ class _CadastrarUserState extends State<CadastrarUser> {
         child: Form(
           key: _cadKey,
           child: SizedBox(
-            height: 1000,
+            height: 1050,
             child: Stack(
               children: [
                 Container(
