@@ -289,7 +289,7 @@ class _RegistrarSojaState extends State<RegistrarSoja> {
                   const SizedBox(width: 0),
                   Image.asset(
                     'lib/img/faixaSoja.png',
-                    height: 120,
+                    height: 60,
                     width: 230,
                   ),
                 ],

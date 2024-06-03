@@ -300,7 +300,7 @@ class _EditarSojaState extends State<EditarSoja> {
                   const SizedBox(width: 0),
                   Image.asset(
                     'lib/img/editar_soja.png',
-                    height: 120,
+                    height: 60,
                     width: 230,
                   ),
                 ],
