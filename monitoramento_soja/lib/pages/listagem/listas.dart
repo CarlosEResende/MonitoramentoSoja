@@ -14,27 +14,36 @@ import 'package:monitoramento_soja/repository/predador_dao.dart';
 import 'package:monitoramento_soja/repository/soja_dao.dart';
 
 class SojaLista extends StatelessWidget {
-  final String _titulo;
+  final String _titulo1;
+  final String _titulo2;
   final String _subTitulo1;
   final String _subTitulo2;
   final String _subTitulo3;
   final String _subTitulo4;
   final String _id;
 
-  const SojaLista(this._titulo, this._subTitulo1, this._subTitulo2,
-      this._subTitulo3, this._subTitulo4, this._id,
+  const SojaLista(this._titulo1, this._titulo2, this._subTitulo1,
+      this._subTitulo2, this._subTitulo3, this._subTitulo4, this._id,
       {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        tileColor: Color.fromARGB(255, 162, 212, 149),
+        tileColor: const Color.fromARGB(255, 162, 212, 149),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Lote/Talhão: $_titulo'),
-            Row(
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Prop.: $_titulo1'),
+                  Text('Lote: $_titulo2'),
+                ],
+              ),
+            ),
+            Column(
               children: [
                 MaterialButton(
                   onPressed: () async {
@@ -58,14 +67,16 @@ class SojaLista extends StatelessWidget {
                     SojaDTO? soja = await SojaDAO().selectById(_id);
 
                     if (soja != null) {
-                      Navigator.push(
+                      await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => EditarSoja(
                             soja: soja,
                           ),
                         ),
-                      );
+                      ).then((resultado) {
+                        if (resultado == true) {}
+                      });
                     }
                   },
                   child: const Text('Editar'),
@@ -77,7 +88,7 @@ class SojaLista extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Monitor: $_subTitulo1 Data: $_subTitulo2'),
+            Text('Data: $_subTitulo1 Data Sem.: $_subTitulo2'),
             Text('Cultivo: $_subTitulo3 Estágio: $_subTitulo4'),
           ],
         ),
@@ -99,7 +110,7 @@ class DoencaLista extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        tileColor: Color.fromARGB(255, 162, 212, 149),
+        tileColor: const Color.fromARGB(255, 162, 212, 149),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -154,7 +165,7 @@ class PragaLista extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        tileColor: Color.fromARGB(255, 162, 212, 149),
+        tileColor: const Color.fromARGB(255, 162, 212, 149),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -213,7 +224,7 @@ class PredadorLista extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        tileColor: Color.fromARGB(255, 162, 212, 149),
+        tileColor: const Color.fromARGB(255, 162, 212, 149),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

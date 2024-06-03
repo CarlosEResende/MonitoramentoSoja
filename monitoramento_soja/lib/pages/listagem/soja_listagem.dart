@@ -67,8 +67,15 @@ class _SojaListagemState extends State<SojaListagem> {
           } else if (snapshot.hasData) {
             List<SojaDTO> sojas = snapshot.data!;
             List<SojaLista> listaItensLista = sojas.map((soja) {
-              return SojaLista(soja.lote_talhao, soja.monitor, soja.data,
-                  soja.tipo_soja, soja.estagio_soja, soja.id.toString());
+              return SojaLista(
+                soja.municipio,
+                soja.lote_talhao,
+                soja.data,
+                soja.data_semeadura,
+                soja.tipo_soja,
+                soja.estagio_soja,
+                soja.id.toString(),
+              );
             }).toList();
 
             return ListView.builder(

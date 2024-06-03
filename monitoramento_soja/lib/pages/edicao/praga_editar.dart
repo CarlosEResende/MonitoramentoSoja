@@ -131,7 +131,7 @@ class _EditarPragaState extends State<EditarPraga> {
                                 const EdgeInsets.fromLTRB(20, 20, 10, 20),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           onChanged: (value) => pragaDTO.tamanho = value,
                           controller: myControllerNr12,
@@ -155,7 +155,7 @@ class _EditarPragaState extends State<EditarPraga> {
                                 const EdgeInsets.fromLTRB(20, 20, 10, 20),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextFormField(
                           onChanged: (value) => pragaDTO.nivel_controle = value,
                           controller: myControllerNr13,
@@ -179,7 +179,7 @@ class _EditarPragaState extends State<EditarPraga> {
                                 const EdgeInsets.fromLTRB(20, 20, 10, 20),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Container(
                           alignment: Alignment.center,
                           child: const Text(
@@ -461,7 +461,7 @@ class _EditarPragaState extends State<EditarPraga> {
                   ),
                   const SizedBox(width: 0),
                   Image.asset(
-                    'lib/img/faixaPredador.png',
+                    'lib/img/editar_praga.png',
                     height: 120,
                     width: 230,
                   ),
